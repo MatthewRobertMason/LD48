@@ -60,4 +60,4 @@ jobs:
           ITCH_GAME: LD-48-JamVersion
           ITCH_USER: mmason
           PACKAGE: build/WebGL
-          VERSION: ${{ steps.slug.outputs.sha8 }}
+          VERSION: ${{ steps.slug.outputs.sha8 }} 
