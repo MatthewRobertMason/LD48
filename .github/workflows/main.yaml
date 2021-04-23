@@ -47,7 +47,7 @@ jobs:
             UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           unityVersion: 2020.3.5f1
-          targetPlatform: WebGL
+          targetPlatform: WebGL 
 
       # Output
       - name: Upload Artifacts
