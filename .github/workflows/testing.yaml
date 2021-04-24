@@ -1,7 +1,6 @@
 name: Build and Deploy Testing Branch
 
 on:
-  pull_request: {  }
   push: { branches: [Testing] }
 
 env:
