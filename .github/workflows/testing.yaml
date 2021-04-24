@@ -1,26 +1,13 @@
 name: Build and Deploy Testing Branch
 
 on:
-  pull_request: { branches: [Testing] }
+  pull_request: {  }
   push: { branches: [Testing] }
 
 env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
-  clean:
-    name: Clean project stuff
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Free Disk Space
-        run: |
-          sudo swapoff -a
-          sudo rm -f /swapfile
-          sudo apt clean
-          docker rmi $(docker images -q)
-          df -h
-    
   build:
     needs: clean
     name: Build my project
