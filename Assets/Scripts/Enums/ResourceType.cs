@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Enums
 {
-    public enum BlockType
+    public enum ResourceType
     {
-        Bedrock,
-        Dirt,
-        Stone,
-        OldPipe
+        None,
+        Iron,
+        Copper,
+        Gold,
+        Diamond
     }
 }
