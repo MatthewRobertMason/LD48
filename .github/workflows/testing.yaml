@@ -9,7 +9,6 @@ env:
 
 jobs:
   build:
-    needs: clean
     name: Build my project
     runs-on: ubuntu-latest
       
