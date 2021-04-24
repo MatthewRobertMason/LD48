@@ -8,6 +8,17 @@ env:
   UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
 
 jobs:
+  clean:
+    name: Clean project stuff
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Free Disk Space
+        run: |
+          sudo apt clean
+          docker rmi $(docker images -q)
+          df -h
+    
   build:
     name: Build my project
     runs-on: ubuntu-latest
@@ -17,12 +28,6 @@ jobs:
       - name: Get short SHA
         id: slug
         run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
-
-      - name: Free Disk Space for Android
-        run: |
-          sudo apt clean
-          docker rmi $(docker images -q)
-          df -h
           
       # Checkout
       - name: Checkout repository
