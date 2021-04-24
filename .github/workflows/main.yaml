@@ -40,6 +40,12 @@ jobs:
           unityVersion: 2020.3.5f1
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Free Disk Space for Android
+        run: |
+          sudo apt clean
+          docker rmi $(docker images -q)
+          df -h
+          
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v2
@@ -47,8 +53,9 @@ jobs:
             UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           unityVersion: 2020.3.5f1
-          targetPlatform: WebGL 
-          versioning: Custom
+          targetPlatform: WebGL
+          versioning: Semantic
+          allowDirtyBuild: true
 
       # Output
       - name: Upload Artifacts
@@ -59,11 +66,11 @@ jobs:
       
       # Upload to itch
       - name: Upload to Itch
-        uses: josephbmanley/butler-publish-itchio-action@master
+        uses: josephbmanley/butler-publish-itchio-action@v1.0.2
         env:
           BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
           CHANNEL: HTML5
           ITCH_GAME: LD-48-JamVersion
           ITCH_USER: mmason
           PACKAGE: build/WebGL
-          VERSION: ${{ steps.slug.outputs.sha8 }} 
+          VERSION: ${{ steps.slug.outputs.sha8 }}
