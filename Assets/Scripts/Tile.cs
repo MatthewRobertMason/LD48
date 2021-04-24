@@ -4,6 +4,7 @@ using UnityEngine;
 
 using Assets.Scripts.Enums;
 
+[System.Serializable]
 public struct GameTile
 {
     public BlockType blockType;
