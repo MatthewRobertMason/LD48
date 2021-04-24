@@ -25,16 +25,28 @@ jobs:
     runs-on: ubuntu-latest
       
     steps:
+      - name: Check Disk Space
+        run: |
+          df -h
+          
       # Get short SHA
       - name: Get short SHA
         id: slug
         run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
+      
+      - name: Check Disk Space
+        run: |
+          df -h
           
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           lfs: true
+      
+      - name: Check Disk Space
+        run: |
+          df -h
 
       # Cache
       - name: Cache
@@ -42,6 +54,10 @@ jobs:
         with:
           path: Library
           key: Library
+      
+      - name: Check Disk Space
+        run: |
+          df -h
 
       # Test
       - name: Run tests
@@ -51,6 +67,10 @@ jobs:
         with:
           unityVersion: 2020.3.5f1
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Check Disk Space
+        run: |
+          df -h
     
       # Build
       - name: Build project
@@ -61,6 +81,10 @@ jobs:
           unityVersion: 2020.3.5f1
           targetPlatform: WebGL
           allowDirtyBuild: true
+      
+      - name: Check Disk Space
+        run: |
+          df -h
 
       # Output
       - name: Upload Artifacts
@@ -68,6 +92,10 @@ jobs:
         with:
           name: WebGL
           path: build/WebGL
+      
+      - name: Check Disk Space
+        run: |
+          df -h
       
       # Upload to itch
       - name: Upload to Itch
@@ -79,3 +107,7 @@ jobs:
           ITCH_USER: mmason
           PACKAGE: build/WebGL
           VERSION: ${{ steps.slug.outputs.sha8 }}
+      
+      - name: Check Disk Space
+        run: |
+          df -h
