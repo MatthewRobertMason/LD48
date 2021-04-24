@@ -17,7 +17,13 @@ jobs:
       - name: Get short SHA
         id: slug
         run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
-        
+
+      - name: Free Disk Space for Android
+        run: |
+          sudo apt clean
+          docker rmi $(docker images -q)
+          df -h
+          
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -39,13 +45,7 @@ jobs:
         with:
           unityVersion: 2020.3.5f1
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Free Disk Space for Android
-        run: |
-          sudo apt clean
-          docker rmi $(docker images -q)
-          df -h
-          
+    
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v2
