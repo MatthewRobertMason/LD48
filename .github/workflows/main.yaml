@@ -1,7 +1,6 @@
 name: Build and Deploy Release Branch
 
 on:
-  pull_request: {  }
   push: { branches: [main] }
 
 env:
@@ -9,7 +8,6 @@ env:
 
 jobs:
   build:
-    needs: clean
     name: Build my project
     runs-on: ubuntu-latest
       
