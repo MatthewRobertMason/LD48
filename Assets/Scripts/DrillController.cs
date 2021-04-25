@@ -68,6 +68,8 @@ public class DrillController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         levelManager.pipeDisplay.text = RemainingPipe.ToString();
         facingDirection = Vector2Int.down;
+        levelManager.SetPipe(position.x, position.y, 0);
+        length++;
     }
 
     public void FixedUpdate()

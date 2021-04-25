@@ -13,6 +13,10 @@ public class PipeTileScript : Tile {
     public Sprite top_left;
     public Sprite bottom_left;
     public Sprite bottom_right;
+    public Sprite left;
+    public Sprite right;
+    public Sprite top;
+    public Sprite bottom;
 
     // This refreshes itself and other RoadTiles that are orthogonally and diagonally adjacent
     public override void RefreshTile(Vector3Int location, ITilemap tilemap)
@@ -64,7 +68,13 @@ public class PipeTileScript : Tile {
         } else if(left && bottom){
             tileData.sprite = bottom_left;
         } else if(bottom){
-            tileData.sprite = vertical;
+            tileData.sprite = this.bottom;
+        } else if(top){
+            tileData.sprite = this.top;
+        } else if(left){
+            tileData.sprite = this.left;
+        } else if(right){
+            tileData.sprite = this.right;
         }
     }
 
