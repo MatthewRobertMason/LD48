@@ -84,7 +84,7 @@ public class DrillController : MonoBehaviour
 
         if (timePassed > maxTime)
         {
-            timePassed -= timePerAction;
+            timePassed -= maxTime;
             MoveCharacter();
 
             if (forcedMovement > 0)
