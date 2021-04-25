@@ -3,11 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
+using Assets.Scripts.Enums;
 
 public class DrillController : MonoBehaviour
 {
     public Vector2Int position;
     public float visionRadius = 3.25f;
+    private int length = 0;
+
+    public Sprite tile_right_drill;
+    public Sprite tile_left_drill;
+    public Sprite tile_up_drill;
+    public Sprite tile_down_drill;
+
+    private SpriteRenderer sprite;
 
     private Vector2Int Position
     {
@@ -15,6 +26,7 @@ public class DrillController : MonoBehaviour
     }
 
     private Vector2Int facingDirection;
+    private Vector2Int previousMove = new Vector2Int(0, 0);
 
     public Vector2 FacingDirection
     {
@@ -36,6 +48,7 @@ public class DrillController : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         levelManager = FindObjectOfType<LevelManager>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     public void FixedUpdate()
@@ -49,11 +62,46 @@ public class DrillController : MonoBehaviour
         }
     }
 
+    public void GameOver(){
+        SceneManager.LoadScene("SummaryScene");
+    }
+
+    private bool AccumulateResource(ResourceType type){
+        Debug.Log($"Resource get {type}");
+        if(type == ResourceType.Pipe){
+            GameOver();
+            return false;
+        }
+
+        return true;
+    }
+
     private void MoveCharacter()
     {
         if (facingDirection != Vector2.zero)
         {
             position += facingDirection;
+            if(levelManager.LevelMap.OutOfBounds(position.x, -position.y)){
+                GameOver();
+                return;
+            }
+
+            if(!AccumulateResource(levelManager.CollectResource(position.x, position.y))){
+                return;
+            }
+
+            levelManager.SetPipe(position.x, position.y, length);
+            previousMove = facingDirection;
+            length++;
+            if(previousMove.x == 1){
+                this.sprite.sprite = tile_right_drill;
+            } else if(previousMove.x == -1){
+                this.sprite.sprite = tile_left_drill;
+            } else if(previousMove.y == 1){
+                this.sprite.sprite = tile_up_drill;
+            } else if(previousMove.y == -1){
+                this.sprite.sprite = tile_down_drill;
+            }
         }
 
         this.transform.position = new Vector3(position.x, position.y, 0.0f);
@@ -82,7 +130,7 @@ public class DrillController : MonoBehaviour
 
         if (moveVec != Vector2.zero)
         {
-            if (moveVec != (facingDirection * -1))
+            if (moveVec != -facingDirection && facingDirection != -previousMove)
             {
                 facingDirection = moveVec;
             }

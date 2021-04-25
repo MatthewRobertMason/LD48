@@ -55,8 +55,20 @@ public class MapLevel
         }
     }
 
+    public bool OutOfBounds(int x, int y){
+        if(y <= 0) return true;
+        if(x < bedrockBorder || levelWidth - bedrockBorder <= x) return true;
+        return false;
+    }
+
+    public void SetPipe(int x, int y, int length){
+        Cells[y / chunkHeight][x, y % chunkHeight].resourceType = ResourceType.Pipe;
+        Cells[y / chunkHeight][x, y % chunkHeight].variant = length;
+    }
+
     public void CreateLevel()
     {
+        Debug.Log("Create Level");
         for (int c = 0; c < currentChunks; c++)
         {
             Cells.Add(CreateChunk(c));
