@@ -11,7 +11,7 @@
                     "id": "77b1f4fc-a2f4-4172-8318-e3b0089f1e8a",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -82,7 +82,7 @@
                     "id": "b077f79c-08b9-4ab5-a7f3-c5b851db51ee",
                     "expectedControlType": "Vector2",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": ""
                 }
             ],
             "bindings": [

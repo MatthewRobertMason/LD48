@@ -135,6 +135,8 @@ public class DrillController : MonoBehaviour
             if (moveVec != -facingDirection && facingDirection != -previousMove)
             {
                 facingDirection = moveVec;
+                timePassed = 0;
+                MoveCharacter();
             }
         }
     }
