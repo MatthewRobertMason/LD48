@@ -55,8 +55,20 @@ public class MapLevel
         }
     }
 
+    public bool OutOfBounds(int x, int y){
+        if(y <= 0) return true;
+        if(x < bedrockBorder || levelWidth - bedrockBorder <= x) return true;
+        return false;
+    }
+
+    public void SetPipe(int x, int y, int length){
+        Cells[y / chunkHeight][x, y % chunkHeight].resourceType = ResourceType.Pipe;
+        Cells[y / chunkHeight][x, y % chunkHeight].variant = length;
+    }
+
     public void CreateLevel()
     {
+        Debug.Log("Create Level");
         for (int c = 0; c < currentChunks; c++)
         {
             Cells.Add(CreateChunk(c));
@@ -84,6 +96,17 @@ public class MapLevel
                     if (y == 0)
                     {
                         temp[x, y].resourceType = ResourceType.Grass;
+                    }
+
+                    if(y > 10){
+                        int resource = Random.Range(0, 100-y);
+                        if(resource == 0){
+                            temp[x, y].resourceType = ResourceType.Copper;
+                        } else if(resource == 1){
+                            temp[x, y].resourceType = ResourceType.Iron;
+                        } else if(resource == 2){
+                            temp[x, y].resourceType = ResourceType.Gold;
+                        }
                     }
                 }
                 else if (LayerLevel >= 1)

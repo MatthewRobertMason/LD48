@@ -13,6 +13,7 @@ namespace Assets.Scripts.Enums
         Copper,
         Gold,
         Diamond,
-        Grass
+        Grass,
+        Pipe
     }
 }
