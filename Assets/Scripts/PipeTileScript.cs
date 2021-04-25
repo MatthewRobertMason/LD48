@@ -63,6 +63,8 @@ public class PipeTileScript : Tile {
             tileData.sprite = top_left;
         } else if(left && bottom){
             tileData.sprite = bottom_left;
+        } else if(bottom){
+            tileData.sprite = vertical;
         }
     }
 
