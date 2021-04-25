@@ -22,11 +22,13 @@ public class GameManager : MonoBehaviour
     private int goldCount = 0;
     private int ironCount = 0;
     private int copperCount = 0;
+    private int diamondCount = 0;
     private int maxDepth = 0;
     public int DepthMultiplier = 50; 
     public int CopperPoints = 2;
     public int IronPoints = 1;
     public int GoldPoints = 3;
+    public int DiamondPoints = 5;
 
     public static void ResetGame(){
         SceneManager.LoadScene("SampleScene");
@@ -51,7 +53,7 @@ public class GameManager : MonoBehaviour
     private void EnterSummaryScene(){
         Debug.Log("Summary scene starting");
         float depthModifier = (float)maxDepth/DepthMultiplier;
-        float score = (CopperPoints * copperCount + IronPoints * ironCount + GoldPoints * goldCount) * depthModifier;
+        float score = (CopperPoints * copperCount + IronPoints * ironCount + GoldPoints * goldCount + DiamondPoints * diamondCount) * depthModifier;
 
         GameObject.Find("CopperValue").GetComponent<UnityEngine.UI.Text>().text = copperCount.ToString();
         GameObject.Find("CopperScore").GetComponent<UnityEngine.UI.Text>().text = $"{CopperPoints * copperCount} points";
@@ -59,6 +61,8 @@ public class GameManager : MonoBehaviour
         GameObject.Find("IronScore").GetComponent<UnityEngine.UI.Text>().text = $"{IronPoints * ironCount} points";
         GameObject.Find("GoldValue").GetComponent<UnityEngine.UI.Text>().text = goldCount.ToString();
         GameObject.Find("GoldScore").GetComponent<UnityEngine.UI.Text>().text = $"{GoldPoints * goldCount} points";
+        GameObject.Find("DiamondValue").GetComponent<UnityEngine.UI.Text>().text = diamondCount.ToString();
+        GameObject.Find("DiamondScore").GetComponent<UnityEngine.UI.Text>().text = $"{DiamondPoints * diamondCount} points";
         GameObject.Find("DepthValue").GetComponent<UnityEngine.UI.Text>().text = maxDepth.ToString();
         GameObject.Find("DepthScore").GetComponent<UnityEngine.UI.Text>().text = string.Format("x {0:0.}%", 100*depthModifier);
         GameObject.Find("ScoreValue").GetComponent<UnityEngine.UI.Text>().text = string.Format("{0:0.}", score);
@@ -66,7 +70,7 @@ public class GameManager : MonoBehaviour
 
     private void EnterGameScene(){
         Debug.Log("Game scene starting");
-        goldCount = copperCount = ironCount = maxDepth = 0;
+        goldCount = copperCount = ironCount = diamondCount = maxDepth = 0;
 
         levelManager = FindObjectOfType<LevelManager>();
         levelManager.Initialize();
@@ -108,6 +112,7 @@ public class GameManager : MonoBehaviour
             case ResourceType.Iron: ironCount++; break;
             case ResourceType.Copper: copperCount++; break;
             case ResourceType.Gold: goldCount++; break;
+            case ResourceType.Diamond: diamondCount++; break;
         }
     }
 

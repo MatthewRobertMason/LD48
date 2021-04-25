@@ -289,7 +289,7 @@ public class DrillController : MonoBehaviour
     private void StartResearch(){
         research_cost_remaining = ResearchCost;
         active_research = (ResearchType)UnityEngine.Random.Range(0, (int)ResearchType.COUNT);
-        switch(UnityEngine.Random.Range(0, 2)){
+        switch(UnityEngine.Random.Range(0, 3)){
             case 0: 
                 research_resource = ResourceType.Copper; 
                 ResearchResourceText.text = "Copper";
@@ -297,6 +297,10 @@ public class DrillController : MonoBehaviour
             case 1: 
                 research_resource = ResourceType.Gold; 
                 ResearchResourceText.text = "Gold";
+                break;
+            case 2: 
+                research_resource = ResourceType.Diamond; 
+                ResearchResourceText.text = "Diamond";
                 break;
         }
         switch(active_research){

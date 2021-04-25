@@ -675,6 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f1594f02316b345b5ce78510a250d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pipeDisplay: {fileID: 0}
   levelWidth: 64
   initialHeight: 200
   chunkHeight: 32
@@ -689,7 +690,7 @@ MonoBehaviour:
   IronTile: {fileID: 11400000, guid: b42516eac32476e4fa00960621671628, type: 2}
   CopperTile: {fileID: 11400000, guid: 3fa6e66ba6c944548906dee452be0be6, type: 2}
   GoldTile: {fileID: 11400000, guid: 1b687a9ca5f7061489566fc0cbb738a1, type: 2}
-  DiamondTile: {fileID: 11400000, guid: 5c01080fb4910644aa328e4ebd8e8b92, type: 2}
+  DiamondTile: {fileID: 11400000, guid: 6867e301487a7fb43bbd5a282e4d2074, type: 2}
   GrassTile: {fileID: 11400000, guid: 804a738678841a141901cd1866121808, type: 2}
   FogOfWarTile: {fileID: 11400000, guid: 5a26e00fcb48d47478f23b3b492d6523, type: 2}
   PipeTile: {fileID: 11400000, guid: 27ea3f3ec1fc97348a039cc45148b553, type: 2}
