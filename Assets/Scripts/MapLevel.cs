@@ -51,7 +51,12 @@ public class MapLevel
     {
         get 
         { 
-            return Cells[y / chunkHeight][x, y % chunkHeight]; 
+            int chunk_index = y/chunkHeight;
+            while(chunk_index > Cells.Count){
+                Cells.Add(CreateChunk(Cells.Count));
+            }
+            currentChunks = Cells.Count;
+            return Cells[chunk_index][x, y % chunkHeight]; 
         }
     }
 
@@ -62,6 +67,7 @@ public class MapLevel
     }
 
     public void SetPipe(int x, int y, int length){
+        var cell = this[x, y];
         Cells[y / chunkHeight][x, y % chunkHeight].resourceType = ResourceType.Pipe;
         Cells[y / chunkHeight][x, y % chunkHeight].variant = length;
     }
