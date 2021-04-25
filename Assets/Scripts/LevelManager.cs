@@ -11,6 +11,9 @@ public class LevelManager : MonoBehaviour
     private MapLevel levelMap;
     public static LevelManager level;
 
+    [Header("UI")]
+    public UnityEngine.UI.Text pipeDisplay;
+
     [Header("Generation Parameters")]
     public int levelWidth = 64;
     public int initialHeight = 200;

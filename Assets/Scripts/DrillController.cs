@@ -51,6 +51,7 @@ public class DrillController : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         levelManager = FindObjectOfType<LevelManager>();
         sprite = GetComponent<SpriteRenderer>();
+        levelManager.pipeDisplay.text = RemainingPipe.ToString();
     }
 
     public void FixedUpdate()
@@ -96,6 +97,7 @@ public class DrillController : MonoBehaviour
             }
 
             RemainingPipe--;
+            levelManager.pipeDisplay.text = RemainingPipe.ToString();
             if(RemainingPipe < 0){
                 GameOver();
                 return;
