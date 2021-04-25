@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterPrefab: {fileID: 423007391309329278, guid: a3115c0b477ff754ca64805c6255a24d, type: 3}
+  drillPrefab: {fileID: 2955246365265334945, guid: 2b9f543af7721314f94559faa933d99a, type: 3}

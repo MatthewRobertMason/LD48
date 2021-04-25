@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public GameObject characterPrefab;
+    public GameObject drillPrefab;
 
     private GameObject character;
 
@@ -57,7 +58,9 @@ public class GameManager : MonoBehaviour
         character = Instantiate<GameObject>(characterPrefab, pos, Quaternion.Euler(Vector3.zero));
         character.GetComponent<DrillController>().position = new Vector2Int(pos.x, pos.y);
 
-        levelManager.ClearFogOfWar(pos.x, pos.y, character.GetComponent<DrillController>().visionRadius);
+
+
+        //levelManager.ClearFogOfWar(pos.x, pos.y, character.GetComponent<DrillController>().visionRadius);
     }
 
     public void Start()
@@ -66,9 +69,16 @@ public class GameManager : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
         levelManager.Initialize();
 
-        Vector3Int pos = new Vector3Int(levelManager.levelWidth/2, -10, 0);
+        Vector3Int pos = new Vector3Int(levelManager.levelWidth/2, 0, 0);
         character = Instantiate<GameObject>(characterPrefab, pos, Quaternion.Euler(Vector3.zero));
-        character.GetComponent<DrillController>().position = new Vector2Int(pos.x, pos.y);
+        DrillController drillComponent = character.GetComponent<DrillController>();
+        drillComponent.position = new Vector2Int(pos.x, pos.y);
+
+        Vector3 machinePos = new Vector3(pos.x + 1, drillPrefab.transform.position.y, 0);
+        GameObject drillMachineObject = Instantiate<GameObject>(drillPrefab, machinePos, Quaternion.Euler(Vector3.zero));
+
+        drillComponent.LockMovement = true;
+        drillComponent.ForcedMovement = 10;
 
         levelManager.ClearFogOfWar(pos.x, pos.y, character.GetComponent<DrillController>().visionRadius);
     }

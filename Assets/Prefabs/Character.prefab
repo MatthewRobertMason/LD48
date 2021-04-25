@@ -158,6 +158,7 @@ MonoBehaviour:
   tile_up_drill: {fileID: 759806175588820344, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   tile_down_drill: {fileID: -7936603521824548063, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   timePerAction: 0.5
+  timePerActionForced: 0.1
 --- !u!114 &423007391309329277
 MonoBehaviour:
   m_ObjectHideFlags: 0
