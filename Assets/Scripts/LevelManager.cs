@@ -153,30 +153,45 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void ClearFogOfWar(int xx, int yy, float radius)
+    public void DigTile(int x, int y)
+    {
+        Vector3Int pos = new Vector3Int(x, y, 0);
+        Foreground.SetTile(pos, null);
+    }
+
+    public void RemoveGrass(int x, int y)
+    {
+        GameTile tile = levelMap[x, y];
+        if (tile.resourceType == ResourceType.Grass)
+        {
+            tile.resourceType = ResourceType.None;
+        }
+    }
+
+    public void ClearFogOfWar(int x, int y, float radius)
     {
         int xClampMax = levelWidth-1;
         int yClampMax = (levelMap.CurrentChunks * chunkHeight - 1) * -1;
         int intRadius = (int)radius;
 
-        int xMin = Mathf.Clamp(xx - intRadius, 0, xClampMax);
-        int xMax = Mathf.Clamp(xx + intRadius, 0, xClampMax);
-        int yMin = Mathf.Clamp(yy - intRadius, yClampMax, 0);
-        int yMax = Mathf.Clamp(yy + intRadius, yClampMax, 0);
+        int xMin = Mathf.Clamp(x - intRadius, 0, xClampMax);
+        int xMax = Mathf.Clamp(x + intRadius, 0, xClampMax);
+        int yMin = Mathf.Clamp(y - intRadius, yClampMax, 0);
+        int yMax = Mathf.Clamp(y + intRadius, yClampMax, 0);
 
-        Vector2 pos = new Vector2Int(xx, yy);
+        Vector2 pos = new Vector2Int(x, y);
         Vector2 test = new Vector2Int();
 
-        for (int x = xMin; x <= xMax; x++)
+        for (int xx = xMin; xx <= xMax; xx++)
         {
-            for (int y = yMin; y <= yMax; y++)
+            for (int yy = yMin; yy <= yMax; yy++)
             {
-                test.x = x;
-                test.y = y;
+                test.x = xx;
+                test.y = yy;
 
                 if (Vector2.Distance(pos, test) <= radius)
                 {
-                    FogOfWar.SetTile(new Vector3Int(x, y, 0), null);
+                    FogOfWar.SetTile(new Vector3Int(xx, yy, 0), null);
                 }
             }
         }

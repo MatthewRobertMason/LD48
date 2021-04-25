@@ -85,6 +85,9 @@ public class GameManager : MonoBehaviour
         DrillController drillComponent = player.GetComponent<DrillController>();
         drillComponent.position = new Vector2Int(pos.x, pos.y);
 
+        levelManager.DigTile(pos.x, pos.y);
+        levelManager.RemoveGrass(pos.x, pos.y);
+
         cameraObject = Instantiate<GameObject>(cameraPrefab, new Vector3(0.0f, 0.0f, -10.0f), Quaternion.Euler(Vector3.zero));
         cameraFollow = cameraObject.GetComponent<CameraFollow>();
         cameraFollow.Player = player;
