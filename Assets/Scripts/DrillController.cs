@@ -66,11 +66,14 @@ public class DrillController : MonoBehaviour
         SceneManager.LoadScene("SummaryScene");
     }
 
-    private void AccumulateResource(ResourceType type){
+    private bool AccumulateResource(ResourceType type){
         Debug.Log($"Resource get {type}");
         if(type == ResourceType.Pipe){
             GameOver();
+            return false;
         }
+
+        return true;
     }
 
     private void MoveCharacter()
@@ -78,7 +81,15 @@ public class DrillController : MonoBehaviour
         if (facingDirection != Vector2.zero)
         {
             position += facingDirection;
-            AccumulateResource(levelManager.CollectResource(position.x, position.y));
+            if(levelManager.LevelMap.OutOfBounds(position.x, -position.y)){
+                GameOver();
+                return;
+            }
+
+            if(!AccumulateResource(levelManager.CollectResource(position.x, position.y))){
+                return;
+            }
+
             levelManager.SetPipe(position.x, position.y, length);
             previousMove = facingDirection;
             length++;
