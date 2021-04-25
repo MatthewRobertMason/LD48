@@ -187,6 +187,8 @@ public class DrillController : MonoBehaviour
 
         this.transform.position = new Vector3(position.x, position.y, 0.0f);
         levelManager.ClearFogOfWar(position.x, position.y, visionRadius);
+
+        levelManager.DigTile(position.x, position.y);
     }
 
     Vector2 oldVec;
