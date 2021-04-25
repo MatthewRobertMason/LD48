@@ -122,6 +122,50 @@ public class MapLevel
             }
         }
 
+        if(LayerLevel >= 1){
+            GenerateVein(10, ResourceType.Iron, temp, new Vector2Int(Random.Range(bedrockBorder, levelWidth - bedrockBorder), Random.Range(0, chunkHeight)));
+            GenerateVein(10, ResourceType.Copper, temp, new Vector2Int(Random.Range(bedrockBorder, levelWidth - bedrockBorder), Random.Range(0, chunkHeight)));
+            GenerateVein(10, ResourceType.Gold, temp, new Vector2Int(Random.Range(bedrockBorder, levelWidth - bedrockBorder), Random.Range(0, chunkHeight)));
+        }
+
         return temp;
+    }
+
+    private void GenerateVein(int size, ResourceType kind, GameTile[,] chunk, Vector2Int start){
+        var covered = new HashSet<Vector2Int>();
+        var neighbors = new HashSet<Vector2Int>();
+        var neighbor_list = new List<Vector2Int>();
+        neighbor_list.Add(start);
+        int created = 0;
+
+        while(created < size && neighbor_list.Count > 0){
+            // Get a random unconsidered index
+            int index = Random.Range(0, neighbor_list.Count);
+            Vector2Int current = neighbor_list[index];
+            neighbor_list[index] = neighbor_list[neighbor_list.Count-1];
+            neighbor_list.RemoveAt(neighbor_list.Count-1);
+            neighbors.Remove(current);
+            covered.Add(current);
+
+            // Check if we can make this part of the vein
+            if(current.y < 0 || current.y >= chunkHeight) continue;
+            if(current.x < bedrockBorder || current.x >= levelWidth - bedrockBorder) continue;
+            ref GameTile cell = ref chunk[current.x, current.y];
+            if(cell.resourceType != ResourceType.None) continue;
+            cell.resourceType = kind;
+            created++;
+
+            // Add neighbours for added tile
+            for(int dx = -1; dx <= 1; dx++){
+                for(int dy = -1; dy <= 1; dy++){
+                    var point = new Vector2Int(dx, dy);
+                    point += current;
+                    if(!neighbors.Contains(point) && !covered.Contains(point)){
+                        neighbor_list.Add(point);
+                        neighbors.Add(point);
+                    }
+                }
+            }
+        }
     }
 }
