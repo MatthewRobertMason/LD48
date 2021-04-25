@@ -16,6 +16,7 @@ public class DrillController : MonoBehaviour
     }
 
     private Vector2Int facingDirection;
+    private Vector2Int previousMove = new Vector2Int(0, 0);
 
     public Vector2 FacingDirection
     {
@@ -56,6 +57,7 @@ public class DrillController : MonoBehaviour
         {
             position += facingDirection;
             levelManager.SetPipe(position.x, position.y, length);
+            previousMove = facingDirection;
             length++;
         }
 
@@ -85,7 +87,7 @@ public class DrillController : MonoBehaviour
 
         if (moveVec != Vector2.zero)
         {
-            if (moveVec != (facingDirection * -1))
+            if (moveVec != -facingDirection && facingDirection != -previousMove)
             {
                 facingDirection = moveVec;
             }
