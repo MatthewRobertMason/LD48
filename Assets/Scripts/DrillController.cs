@@ -10,6 +10,13 @@ public class DrillController : MonoBehaviour
     public float visionRadius = 3.25f;
     private int length = 0;
 
+    public Sprite tile_right_drill;
+    public Sprite tile_left_drill;
+    public Sprite tile_up_drill;
+    public Sprite tile_down_drill;
+
+    private SpriteRenderer sprite;
+
     private Vector2Int Position
     {
         get => position;
@@ -38,6 +45,7 @@ public class DrillController : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         levelManager = FindObjectOfType<LevelManager>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     public void FixedUpdate()
@@ -59,6 +67,15 @@ public class DrillController : MonoBehaviour
             levelManager.SetPipe(position.x, position.y, length);
             previousMove = facingDirection;
             length++;
+            if(previousMove.x == 1){
+                this.sprite.sprite = tile_right_drill;
+            } else if(previousMove.x == -1){
+                this.sprite.sprite = tile_left_drill;
+            } else if(previousMove.y == 1){
+                this.sprite.sprite = tile_up_drill;
+            } else if(previousMove.y == -1){
+                this.sprite.sprite = tile_down_drill;
+            }
         }
 
         this.transform.position = new Vector3(position.x, position.y, 0.0f);
