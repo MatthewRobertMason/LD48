@@ -122,4 +122,33 @@ public class LevelManager : MonoBehaviour
         }
         FogOfWar.SetTile(pos, FogOfWarTile);
     }
+
+    public void ClearFogOfWar(int xx, int yy, float radius)
+    {
+        int xClampMax = levelWidth-1;
+        int yClampMax = (levelMap.CurrentChunks * chunkHeight - 1) * -1;
+        int intRadius = (int)radius;
+
+        int xMin = Mathf.Clamp(xx - intRadius, 0, xClampMax);
+        int xMax = Mathf.Clamp(xx + intRadius, 0, xClampMax);
+        int yMin = Mathf.Clamp(yy - intRadius, yClampMax, 0);
+        int yMax = Mathf.Clamp(yy + intRadius, yClampMax, 0);
+
+        Vector2 pos = new Vector2Int(xx, yy);
+        Vector2 test = new Vector2Int();
+
+        for (int x = xMin; x <= xMax; x++)
+        {
+            for (int y = yMin; y <= yMax; y++)
+            {
+                test.x = x;
+                test.y = y;
+
+                if (Vector2.Distance(pos, test) <= radius)
+                {
+                    FogOfWar.SetTile(new Vector3Int(x, y, 0), null);
+                }
+            }
+        }
+    }
 }
