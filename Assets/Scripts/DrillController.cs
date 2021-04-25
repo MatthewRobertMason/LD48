@@ -7,6 +7,13 @@ using UnityEngine.SceneManagement;
 
 using Assets.Scripts.Enums;
 
+enum ResearchType{
+    View,
+    Efficiency,
+    Speed,
+    COUNT
+};
+
 public class DrillController : MonoBehaviour
 {
     public Vector2Int position;
@@ -14,11 +21,19 @@ public class DrillController : MonoBehaviour
     private int length = 0;
     public int RemainingPipe = 40;
     public int PipePerIron = 5;
+    public int ResearchCost = 10;
 
     public Sprite tile_right_drill;
     public Sprite tile_left_drill;
     public Sprite tile_up_drill;
     public Sprite tile_down_drill;
+
+    private ResearchType active_research;
+    private ResourceType research_resource;
+    private int research_cost_remaining;
+    private UnityEngine.UI.Text ResearchDescriptionText;
+    private UnityEngine.UI.Text ResearchCostText;
+    private UnityEngine.UI.Text ResearchResourceText;
 
     private bool lockMovement = false;
     public bool LockMovement
@@ -73,6 +88,10 @@ public class DrillController : MonoBehaviour
         facingDirection = Vector2Int.down;
         levelManager.SetPipe(position.x, position.y, 0);
         length++;
+        ResearchDescriptionText = GameObject.Find("ResearchDescription").GetComponent<UnityEngine.UI.Text>();
+        ResearchCostText = GameObject.Find("ResearchCost").GetComponent<UnityEngine.UI.Text>();
+        ResearchResourceText = GameObject.Find("ResearchResource").GetComponent<UnityEngine.UI.Text>();
+        StartResearch();
     }
 
     public void FixedUpdate()
@@ -113,6 +132,7 @@ public class DrillController : MonoBehaviour
         } else if(type == ResourceType.Iron){
             RemainingPipe += PipePerIron;
         }
+        AdvanceResearch(type);
 
         gameManager.AccumulateResourceScore(type);
         return true;
@@ -199,5 +219,58 @@ public class DrillController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void StartResearch(){
+        research_cost_remaining = ResearchCost;
+        active_research = (ResearchType)UnityEngine.Random.Range(0, (int)ResearchType.COUNT);
+        switch(UnityEngine.Random.Range(0, 2)){
+            case 0: 
+                research_resource = ResourceType.Copper; 
+                ResearchResourceText.text = "Copper";
+                break;
+            case 1: 
+                research_resource = ResourceType.Gold; 
+                ResearchResourceText.text = "Gold";
+                break;
+        }
+        switch(active_research){
+            case ResearchType.Efficiency:
+                ResearchDescriptionText.text = "Improve pipe efficiency.";
+                break;
+            case ResearchType.Speed:
+                ResearchDescriptionText.text = "Allow slower drilling.";
+                break;
+            case ResearchType.View:
+                ResearchDescriptionText.text = "Improve sensor radius.";
+                break;
+        }
+        ResearchCostText.text = $"{research_cost_remaining}/{ResearchCost}";
+    }
+
+    private void AdvanceResearch(ResourceType type){
+        if(type == research_resource){
+            research_cost_remaining--;
+            ResearchCostText.text = $"{research_cost_remaining}/{ResearchCost}";
+            if(research_cost_remaining <= 0){
+                FinishResearch();
+            }
+        }
+    }
+
+    private void FinishResearch(){
+        switch(active_research){
+            case ResearchType.Efficiency:
+                PipePerIron += 2;
+                break;
+            case ResearchType.Speed:
+                timePerAction++;
+                break;
+            case ResearchType.View:
+                visionRadius++;
+                break;
+        }
+        ResearchCost++;
+        StartResearch();
     }
 }
