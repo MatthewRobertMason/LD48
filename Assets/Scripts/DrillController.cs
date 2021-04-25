@@ -73,6 +73,7 @@ public class DrillController : MonoBehaviour
             return false;
         }
 
+        GameManager.instance.AccumulateResourceScore(type);
         return true;
     }
 

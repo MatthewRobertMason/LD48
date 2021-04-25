@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using Assets.Scripts.Enums;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -12,6 +14,10 @@ public class GameManager : MonoBehaviour
     private GameObject character;
 
     private LevelManager levelManager;
+
+    private int goldCount = 0;
+    private int ironCount = 0;
+    private int copperCount = 0;
 
     public static void ResetGame(){
         SceneManager.LoadScene("SampleScene");
@@ -23,9 +29,9 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
             if(SceneManager.GetActiveScene().name == "SummaryScene"){
-                EnterSummaryScene();
+                instance.EnterSummaryScene();
             } else {
-                EnterGameScene();
+                instance.EnterGameScene();
             }
         } else {
             instance = this;
@@ -35,10 +41,15 @@ public class GameManager : MonoBehaviour
 
     private void EnterSummaryScene(){
         Debug.Log("Summary scene starting");
+        GameObject.Find("CopperValue").GetComponent<UnityEngine.UI.Text>().text = copperCount.ToString();
+        GameObject.Find("IronValue").GetComponent<UnityEngine.UI.Text>().text = ironCount.ToString();
+        GameObject.Find("GoldValue").GetComponent<UnityEngine.UI.Text>().text = goldCount.ToString();
     }
 
     private void EnterGameScene(){
         Debug.Log("Game scene starting");
+        goldCount = copperCount = ironCount = 0;
+
         levelManager = FindObjectOfType<LevelManager>();
         levelManager.Initialize();
 
@@ -61,4 +72,14 @@ public class GameManager : MonoBehaviour
 
         levelManager.ClearFogOfWar(pos.x, pos.y, character.GetComponent<DrillController>().visionRadius);
     }
+
+    
+    public void AccumulateResourceScore(ResourceType type){
+        switch(type){
+            case ResourceType.Iron: ironCount++; break;
+            case ResourceType.Copper: copperCount++; break;
+            case ResourceType.Gold: goldCount++; break;
+        }
+    }
+
 }
