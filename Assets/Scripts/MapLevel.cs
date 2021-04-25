@@ -80,6 +80,11 @@ public class MapLevel
                 else if (LayerLevel <= 0)
                 {
                     temp[x, y].blockType = BlockType.Dirt;
+                    
+                    if (y == 0)
+                    {
+                        temp[x, y].resourceType = ResourceType.Grass;
+                    }
                 }
                 else if (LayerLevel >= 1)
                 {

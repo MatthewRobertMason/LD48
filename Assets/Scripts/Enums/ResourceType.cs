@@ -12,6 +12,7 @@ namespace Assets.Scripts.Enums
         Iron,
         Copper,
         Gold,
-        Diamond
+        Diamond,
+        Grass
     }
 }

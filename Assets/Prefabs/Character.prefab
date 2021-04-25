@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
-  visionRadius: 10.25
-  timePerAction: 0.26
+  visionRadius: 3.25
+  timePerAction: 0.5
 --- !u!114 &423007391309329277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,7 +224,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 15
-  m_Sprite: {fileID: -517257526777669679, guid: 62ef33a678990e2468952752934a988e, type: 3}
+  m_Sprite: {fileID: -7936603521824548063, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -32,6 +32,7 @@ public class LevelManager : MonoBehaviour
     public Tile GoldTile;
     public Tile DiamondTile;
 
+    public Tile GrassTile;
     public Tile FogOfWarTile;
 
     public MapLevel LevelMap
@@ -111,6 +112,10 @@ public class LevelManager : MonoBehaviour
 
             case ResourceType.Diamond:
                 resource = DiamondTile;
+                break;
+
+            case ResourceType.Grass:
+                resource = GrassTile;
                 break;
         }
 

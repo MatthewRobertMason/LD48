@@ -683,11 +683,11 @@ MonoBehaviour:
   Foreground: {fileID: 2122056341537086254}
   Resource: {fileID: 2122056341912643897}
   FogOfWar: {fileID: 2122056340750226951}
-  BedrockTile: {fileID: 11400000, guid: 7fd5c0886889ab94e89750aa6660d392, type: 2}
-  DirtTile: {fileID: 11400000, guid: 9f40ae90a18ee00458acf4a4238a7e75, type: 2}
-  StoneTile: {fileID: 11400000, guid: 6237a2161aaaefd47b3cbd005d679822, type: 2}
-  IronTile: {fileID: 11400000, guid: 19be9f8f38187a34786bfe84c4b93a8b, type: 2}
-  CopperTile: {fileID: 11400000, guid: 2d773c02c8ea59f4d9588d8e6c7cc2ef, type: 2}
-  GoldTile: {fileID: 11400000, guid: 2e587f7efd093a949a215db3acc49e13, type: 2}
-  DiamondTile: {fileID: 11400000, guid: 84757a48775c4e5409d711f456a7636b, type: 2}
+  BedrockTile: {fileID: 11400000, guid: e4e699b83b03e3f4ebd8ecb294092f91, type: 2}
+  DirtTile: {fileID: 11400000, guid: 26d92233c366ac14ca3c6e790969ca5a, type: 2}
+  StoneTile: {fileID: 11400000, guid: 077292978a40781459ffc91cfe942cff, type: 2}
+  IronTile: {fileID: 11400000, guid: 1239ae996507dd94c92a2533f8e3b563, type: 2}
+  CopperTile: {fileID: 11400000, guid: db9a3b2d52f9fca47b8420b3e7ee3ec8, type: 2}
+  GoldTile: {fileID: 11400000, guid: cd11482d2c666724c80e0e80224c4cf0, type: 2}
+  DiamondTile: {fileID: 11400000, guid: 5c01080fb4910644aa328e4ebd8e8b92, type: 2}
   FogOfWarTile: {fileID: 11400000, guid: 5a26e00fcb48d47478f23b3b492d6523, type: 2}
