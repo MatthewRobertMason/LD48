@@ -51,6 +51,7 @@ public class DrillController : MonoBehaviour
 
     private GameManager gameManager;
     private LevelManager levelManager;
+    private CameraFollow cameraFollow;
 
     public float timePerAction = 1.0f;
     public float timePerActionForced = 0.25f;
@@ -65,6 +66,8 @@ public class DrillController : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         levelManager = FindObjectOfType<LevelManager>();
+        cameraFollow = FindObjectOfType<CameraFollow>();
+
         sprite = GetComponent<SpriteRenderer>();
         levelManager.pipeDisplay.text = RemainingPipe.ToString();
         facingDirection = Vector2Int.down;
@@ -120,7 +123,7 @@ public class DrillController : MonoBehaviour
         if (facingDirection != Vector2.zero)
         {
             position += facingDirection;
-            if (levelManager.LevelMap.OutOfBounds(position.x, -position.y))
+            if ((levelManager.LevelMap.OutOfBounds(position.x, -position.y)) || (cameraFollow.OutOfBounds(position.x, position.y)))
             {
                 GameOver();
                 return;

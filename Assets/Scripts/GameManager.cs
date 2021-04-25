@@ -11,10 +11,13 @@ public class GameManager : MonoBehaviour
 
     public GameObject characterPrefab;
     public GameObject drillPrefab;
+    public GameObject cameraPrefab;
 
-    private GameObject character;
+    private GameObject player;
+    private GameObject cameraObject;
 
     private LevelManager levelManager;
+    private CameraFollow cameraFollow;
 
     private int goldCount = 0;
     private int ironCount = 0;
@@ -74,23 +77,26 @@ public class GameManager : MonoBehaviour
     private void CreateCharacterAndDrill()
     {
         Vector3Int pos = new Vector3Int(levelManager.levelWidth/2, 0, 0);
-        character = Instantiate<GameObject>(characterPrefab, pos, Quaternion.Euler(Vector3.zero));
-        DrillController drillComponent = character.GetComponent<DrillController>();
+        player = Instantiate<GameObject>(characterPrefab, pos, Quaternion.Euler(Vector3.zero));
+        DrillController drillComponent = player.GetComponent<DrillController>();
         drillComponent.position = new Vector2Int(pos.x, pos.y);
+
+        cameraObject = Instantiate<GameObject>(cameraPrefab, new Vector3(0.0f, 0.0f, -10.0f), Quaternion.Euler(Vector3.zero));
+        cameraFollow = cameraObject.GetComponent<CameraFollow>();
+        cameraFollow.Player = player;
 
         Vector3 machinePos = new Vector3(pos.x + 1, drillPrefab.transform.position.y, 0);
         GameObject drillMachineObject = Instantiate<GameObject>(drillPrefab, machinePos, Quaternion.Euler(Vector3.zero));
 
         drillComponent.LockMovement = true;
         drillComponent.ForcedMovement = 10;
-
-        levelManager.ClearFogOfWar(pos.x, pos.y, character.GetComponent<DrillController>().visionRadius);
     }
 
     public void Start()
     {
         Debug.Log("GameManager Start");
         levelManager = FindObjectOfType<LevelManager>();
+        cameraFollow = FindObjectOfType<CameraFollow>();
         levelManager.Initialize();
 
         CreateCharacterAndDrill();
