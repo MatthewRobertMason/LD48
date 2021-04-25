@@ -97,6 +97,17 @@ public class MapLevel
                     {
                         temp[x, y].resourceType = ResourceType.Grass;
                     }
+
+                    if(y > 10){
+                        int resource = Random.Range(0, 100-y);
+                        if(resource == 0){
+                            temp[x, y].resourceType = ResourceType.Copper;
+                        } else if(resource == 1){
+                            temp[x, y].resourceType = ResourceType.Iron;
+                        } else if(resource == 2){
+                            temp[x, y].resourceType = ResourceType.Gold;
+                        }
+                    }
                 }
                 else if (LayerLevel >= 1)
                 {
