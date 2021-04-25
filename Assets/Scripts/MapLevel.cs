@@ -99,12 +99,12 @@ public class MapLevel
                     }
 
                     if(y > 10){
-                        int resource = Random.Range(0, 100-y);
-                        if(resource == 0){
+                        int resource = Random.Range(0, Mathf.Max(20, 100-y));
+                        if(resource <= 2){
                             temp[x, y].resourceType = ResourceType.Copper;
-                        } else if(resource == 1){
+                        } else if(resource <= 4){
                             temp[x, y].resourceType = ResourceType.Iron;
-                        } else if(resource == 2){
+                        } else if(resource <= 6){
                             temp[x, y].resourceType = ResourceType.Gold;
                         }
                     }
