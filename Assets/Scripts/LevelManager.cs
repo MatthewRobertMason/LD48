@@ -146,7 +146,11 @@ public class LevelManager : MonoBehaviour
         {
             Resource.SetTile(pos, resource);
         }
-        FogOfWar.SetTile(pos, FogOfWarTile);
+
+        if (y > 3)
+        {
+            FogOfWar.SetTile(pos, FogOfWarTile);
+        }
     }
 
     public void ClearFogOfWar(int xx, int yy, float radius)
