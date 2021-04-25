@@ -8,6 +8,7 @@ using Assets.Scripts.Enums;
 public struct GameTile
 {
     public BlockType blockType;
+    public ResourceType resourceType;
     public int variant;
     public float cost;
 }
