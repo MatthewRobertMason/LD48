@@ -12,6 +12,8 @@ public class DrillController : MonoBehaviour
     public Vector2Int position;
     public float visionRadius = 3.25f;
     private int length = 0;
+    public int RemainingPipe = 40;
+    public int PipePerIron = 5;
 
     public Sprite tile_right_drill;
     public Sprite tile_left_drill;
@@ -64,6 +66,7 @@ public class DrillController : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         levelManager = FindObjectOfType<LevelManager>();
         sprite = GetComponent<SpriteRenderer>();
+        levelManager.pipeDisplay.text = RemainingPipe.ToString();
         facingDirection = Vector2Int.down;
     }
 
@@ -102,9 +105,11 @@ public class DrillController : MonoBehaviour
         if(type == ResourceType.Pipe){
             GameOver();
             return false;
+        } else if(type == ResourceType.Iron){
+            RemainingPipe += PipePerIron;
         }
 
-        GameManager.instance.AccumulateResourceScore(type);
+        gameManager.AccumulateResourceScore(type);
         return true;
     }
 
@@ -124,6 +129,14 @@ public class DrillController : MonoBehaviour
                 return;
             }
 
+            RemainingPipe--;
+            levelManager.pipeDisplay.text = RemainingPipe.ToString();
+            if(RemainingPipe < 0){
+                GameOver();
+                return;
+            }
+
+            gameManager.UpdateDepth(-position.y);
             levelManager.SetPipe(position.x, position.y, length);
             previousMove = facingDirection;
             length++;
