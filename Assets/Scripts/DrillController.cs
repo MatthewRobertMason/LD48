@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
+using Assets.Scripts.Enums;
 
 public class DrillController : MonoBehaviour
 {
@@ -59,11 +62,23 @@ public class DrillController : MonoBehaviour
         }
     }
 
+    public void GameOver(){
+        SceneManager.LoadScene("SummaryScene");
+    }
+
+    private void AccumulateResource(ResourceType type){
+        Debug.Log($"Resource get {type}");
+        if(type == ResourceType.Pipe){
+            GameOver();
+        }
+    }
+
     private void MoveCharacter()
     {
         if (facingDirection != Vector2.zero)
         {
             position += facingDirection;
+            AccumulateResource(levelManager.CollectResource(position.x, position.y));
             levelManager.SetPipe(position.x, position.y, length);
             previousMove = facingDirection;
             length++;

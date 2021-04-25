@@ -87,6 +87,10 @@ public class LevelManager : MonoBehaviour
         DrawTile(x, -y);
     }
 
+    public ResourceType CollectResource(int x, int y){
+        return levelMap[x, -y].resourceType;
+    }
+
     public void DrawTile(int x, int y)
     {
         GameTile tile = levelMap[x, y];
