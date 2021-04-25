@@ -73,7 +73,7 @@ public class DrillController : MonoBehaviour
             return false;
         }
 
-        GameManager.instance.AccumulateResourceScore(type);
+        gameManager.AccumulateResourceScore(type);
         return true;
     }
 
@@ -91,6 +91,7 @@ public class DrillController : MonoBehaviour
                 return;
             }
 
+            gameManager.UpdateDepth(-position.y);
             levelManager.SetPipe(position.x, position.y, length);
             previousMove = facingDirection;
             length++;
