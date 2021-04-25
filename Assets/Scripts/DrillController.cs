@@ -101,9 +101,9 @@ public class DrillController : MonoBehaviour
         {
             maxTime = timePerActionForced;
         }
-
+        
         timePassed += Time.fixedDeltaTime;
-
+        
         if (timePassed > maxTime)
         {
             timePassed -= maxTime;
@@ -187,36 +187,101 @@ public class DrillController : MonoBehaviour
         levelManager.ClearFogOfWar(position.x, position.y, visionRadius);
     }
 
+    Vector2 oldVec;
+
+    bool ignoreX = false;
+    bool ignoreY = false;
     private void OnMove(InputValue input)
     {
         if (!lockMovement)
         {
             Vector2 vec = input.Get<Vector2>();
-            Vector2Int moveVec = Vector2Int.zero;
+            Vector2 _vec = vec;
 
-            if (vec.x != 0.0f)
+            if (ignoreX == true)
             {
-                moveVec.x = (vec.x < 0) ? -1 : 1;
+                vec.x = 0.0f;
             }
 
-            if (vec.y != 0.0f)
+            if (ignoreY == true)
             {
-                moveVec.y = (vec.y < 0) ? -1 : 1;
+                vec.y = 0.0f;
             }
 
-            if (moveVec.x != 0 && moveVec.y != 0)
+            if (vec != Vector2.zero)
             {
-                moveVec.x = 0;
-            }
+                Vector2Int moveVec = Vector2Int.zero;
 
-            if (moveVec != Vector2.zero)
-            {
-                if (moveVec != -facingDirection && facingDirection != -previousMove)
+                // Convert input into ints
+                if (vec.x != 0.0f)
                 {
-                    facingDirection = moveVec;
-                    timePassed = 0;
-                    MoveCharacter();
+                    moveVec.x = (vec.x < 0) ? -1 : 1;
                 }
+
+                if (vec.y != 0.0f)
+                {
+                    moveVec.y = (vec.y < 0) ? -1 : 1;
+                }
+
+                if (previousMove != moveVec)
+                {
+                    //if (previousMove.y == moveVec.y)
+                    //{
+                    //    moveVec.y = 0;
+                    //}
+                    //
+                    //if (previousMove.x == moveVec.x)
+                    //{
+                    //    moveVec.x = 0;
+                    //}
+
+                    if (moveVec.x != 0 && moveVec.y != 0)
+                    {
+                        if (previousMove.y != 0)
+                        {
+                            moveVec.y = 0;
+                        }
+                        else if (previousMove.x != 0)
+                        {
+                            moveVec.x = 0;
+                        }
+                    }
+                }
+
+                // Don't allow diagonal moves
+                if (moveVec.x != 0 && moveVec.y != 0)
+                {
+                    moveVec = Vector2Int.zero;
+                }
+
+                if (moveVec != Vector2.zero)
+                {
+                    if (moveVec != -facingDirection && facingDirection != -previousMove)
+                    {
+                        facingDirection = moveVec;
+                        timePassed = 0;
+                        oldVec = vec;
+                        MoveCharacter();
+                    }
+                }
+            }
+
+            if (_vec.y == 0.0f)
+            {
+                ignoreY = false;
+            }
+            else
+            {
+                ignoreY = true;
+            }
+
+            if (_vec.x == 0.0f)
+            {
+                ignoreX = false;
+            }
+            else
+            {
+                ignoreX = true;
             }
         }
     }
