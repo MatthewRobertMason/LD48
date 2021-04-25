@@ -231,10 +231,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
-      propertyPath: GrassTile
-      value: 
-      objectReference: {fileID: 11400000, guid: e58bf89b62c364b4ca34bce992bc7ae6, type: 2}
     - target: {fileID: 2122056342040366471, guid: f9e82eaca43512748a73518c659f814a, type: 3}
       propertyPath: m_Name
       value: LevelManager

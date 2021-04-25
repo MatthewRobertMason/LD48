@@ -8,6 +8,7 @@ public class DrillController : MonoBehaviour
 {
     public Vector2Int position;
     public float visionRadius = 3.25f;
+    private int length = 0;
 
     private Vector2Int Position
     {
@@ -54,6 +55,8 @@ public class DrillController : MonoBehaviour
         if (facingDirection != Vector2.zero)
         {
             position += facingDirection;
+            levelManager.SetPipe(position.x, position.y, length);
+            length++;
         }
 
         this.transform.position = new Vector3(position.x, position.y, 0.0f);

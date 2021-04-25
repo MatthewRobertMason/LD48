@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
 {
     private GameManager gameManager;
     private MapLevel levelMap;
+    public static LevelManager level;
 
     [Header("Generation Parameters")]
     public int levelWidth = 64;
@@ -31,9 +32,11 @@ public class LevelManager : MonoBehaviour
     public Tile CopperTile;
     public Tile GoldTile;
     public Tile DiamondTile;
-
+    
     public Tile GrassTile;
     public Tile FogOfWarTile;
+
+    public TileBase PipeTile;
 
     public MapLevel LevelMap
     {
@@ -46,6 +49,8 @@ public class LevelManager : MonoBehaviour
         if (FindObjectsOfType<LevelManager>().Length > 1)
         {
             Destroy(this);
+        } else {
+            level = this;
         }
     }
 
@@ -77,14 +82,19 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void SetPipe(int x, int y, int length){
+        levelMap.SetPipe(x, -y, length);
+        DrawTile(x, -y);
+    }
+
     public void DrawTile(int x, int y)
     {
         GameTile tile = levelMap[x, y];
-        Vector3Int pos = new Vector3Int(x, y * -1, 0);
+        Vector3Int pos = new Vector3Int(x, -y, 0);
         
         Tile foreGround = BedrockTile;
-        Tile resource = null;
-        
+        TileBase resource = null;
+
         switch (tile.blockType)
         {
             case BlockType.Dirt:
@@ -116,6 +126,10 @@ public class LevelManager : MonoBehaviour
 
             case ResourceType.Grass:
                 resource = GrassTile;
+                break;
+
+            case ResourceType.Pipe:
+                resource = PipeTile;
                 break;
         }
 

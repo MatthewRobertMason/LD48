@@ -55,8 +55,14 @@ public class MapLevel
         }
     }
 
+    public void SetPipe(int x, int y, int length){
+        Cells[y / chunkHeight][x, y % chunkHeight].resourceType = ResourceType.Pipe;
+        Cells[y / chunkHeight][x, y % chunkHeight].variant = length;
+    }
+
     public void CreateLevel()
     {
+        Debug.Log("Create Level");
         for (int c = 0; c < currentChunks; c++)
         {
             Cells.Add(CreateChunk(c));

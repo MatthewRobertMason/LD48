@@ -690,4 +690,6 @@ MonoBehaviour:
   CopperTile: {fileID: 11400000, guid: db9a3b2d52f9fca47b8420b3e7ee3ec8, type: 2}
   GoldTile: {fileID: 11400000, guid: cd11482d2c666724c80e0e80224c4cf0, type: 2}
   DiamondTile: {fileID: 11400000, guid: 5c01080fb4910644aa328e4ebd8e8b92, type: 2}
+  GrassTile: {fileID: 11400000, guid: e58bf89b62c364b4ca34bce992bc7ae6, type: 2}
   FogOfWarTile: {fileID: 11400000, guid: 5a26e00fcb48d47478f23b3b492d6523, type: 2}
+  PipeTile: {fileID: 11400000, guid: 27ea3f3ec1fc97348a039cc45148b553, type: 2}
