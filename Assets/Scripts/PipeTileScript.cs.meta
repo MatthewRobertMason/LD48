@@ -4,14 +4,18 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - m_DefaultSprite: {instanceID: 0}
-  - m_DefaultGameObject: {instanceID: 0}
+  - m_Sprite: {instanceID: 0}
+  - m_InstancedGameObject: {instanceID: 0}
   - horizontal: {fileID: 2096794751010941262, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   - vertical: {fileID: -4666756510880264869, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   - top_right: {fileID: -3986187285796142972, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   - top_left: {fileID: -9218115008462819005, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   - bottom_left: {fileID: -5679681372999991991, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   - bottom_right: {fileID: 662046916731068474, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
+  - left: {fileID: -6950223593300117097, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
+  - right: {fileID: 6231081168062819109, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
+  - top: {fileID: 7328776184394636782, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
+  - bottom: {fileID: -2186017444305452852, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

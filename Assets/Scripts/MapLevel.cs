@@ -182,4 +182,20 @@ public class MapLevel
             }
         }
     }
+
+    public List<Vector2Int> Replace(ResourceType a, ResourceType b){
+        var changed = new List<Vector2Int>();
+        for(int index = 0; index < Cells.Count; index++){
+            GameTile[,] chunk = Cells[index];
+            for(int xx = 0; xx < levelWidth; xx++){
+                for(int yy = 0; yy < chunkHeight; yy++){
+                    if(chunk[xx, yy].resourceType == a){
+                        chunk[xx, yy].resourceType = b;
+                        changed.Add(new Vector2Int(xx, yy));
+                    }
+                }
+            }
+        }
+        return changed;
+    }
 }

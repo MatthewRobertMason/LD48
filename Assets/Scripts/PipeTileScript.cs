@@ -7,6 +7,7 @@ using Assets.Scripts.Enums;
 
 [CreateAssetMenu]
 public class PipeTileScript : Tile {
+    public ResourceType type;
     public Sprite horizontal;
     public Sprite vertical;
     public Sprite top_right;
@@ -37,8 +38,8 @@ public class PipeTileScript : Tile {
     }
 
     private int pipeIndex(Vector3Int location){
-        MapLevel map = LevelManager.level.LevelMap;
-        if(map[location.x, -location.y].resourceType == ResourceType.Pipe)
+        MapLevel map = GameManager.instance.GetMap();
+        if(map[location.x, -location.y].resourceType == type)
             return map[location.x, -location.y].variant;
 
         return -10;

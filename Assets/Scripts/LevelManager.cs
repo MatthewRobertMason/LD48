@@ -9,7 +9,6 @@ public class LevelManager : MonoBehaviour
 {
     private GameManager gameManager;
     private MapLevel levelMap;
-    public static LevelManager level;
 
     [Header("UI")]
     public UnityEngine.UI.Text pipeDisplay;
@@ -40,6 +39,7 @@ public class LevelManager : MonoBehaviour
     public Tile FogOfWarTile;
 
     public TileBase PipeTile;
+    public TileBase RustyPipeTile;
 
     public MapLevel LevelMap
     {
@@ -53,13 +53,17 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(this);
         } else {
-            level = this;
+            DontDestroyOnLoad(this);
         }
     }
 
     public void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+    }
+
+    public void FindUI(){
+        pipeDisplay = GameObject.Find("PipeText").GetComponent<UnityEngine.UI.Text>();
     }
 
     public void Initialize()
@@ -94,7 +98,7 @@ public class LevelManager : MonoBehaviour
         return levelMap[x, -y].resourceType;
     }
 
-    public void DrawTile(int x, int y)
+    public void DrawTile(int x, int y, bool fog=true)
     {
         GameTile tile = levelMap[x, y];
         Vector3Int pos = new Vector3Int(x, -y, 0);
@@ -138,6 +142,10 @@ public class LevelManager : MonoBehaviour
             case ResourceType.Pipe:
                 resource = PipeTile;
                 break;
+
+            case ResourceType.RustyPipe:
+                resource = RustyPipeTile;
+                break;
         }
 
         Background.SetTile(pos, foreGround);
@@ -147,7 +155,7 @@ public class LevelManager : MonoBehaviour
             Resource.SetTile(pos, resource);
         }
 
-        if (y > 3)
+        if (y > 3 && fog)
         {
             FogOfWar.SetTile(pos, FogOfWarTile);
         }
@@ -179,6 +187,13 @@ public class LevelManager : MonoBehaviour
                     FogOfWar.SetTile(new Vector3Int(x, y, 0), null);
                 }
             }
+        }
+    }
+
+    public void RecyclePipes(){
+        var changes = levelMap.Replace(ResourceType.Pipe, ResourceType.RustyPipe);
+        foreach(var index in changes){
+            DrawTile(index.x, index.y, false);
         }
     }
 }

@@ -131,6 +131,8 @@ public class DrillController : MonoBehaviour
             return false;
         } else if(type == ResourceType.Iron){
             RemainingPipe += PipePerIron;
+        } else if(type == ResourceType.RustyPipe){
+            RemainingPipe += 1;
         }
         AdvanceResearch(type);
 

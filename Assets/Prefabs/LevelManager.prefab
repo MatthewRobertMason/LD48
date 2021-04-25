@@ -694,3 +694,4 @@ MonoBehaviour:
   GrassTile: {fileID: 11400000, guid: 804a738678841a141901cd1866121808, type: 2}
   FogOfWarTile: {fileID: 11400000, guid: 5a26e00fcb48d47478f23b3b492d6523, type: 2}
   PipeTile: {fileID: 11400000, guid: 27ea3f3ec1fc97348a039cc45148b553, type: 2}
+  RustyPipeTile: {fileID: 11400000, guid: d47573b5730b11844bccd638a4661d10, type: 2}

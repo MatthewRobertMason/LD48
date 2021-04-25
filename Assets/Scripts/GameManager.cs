@@ -31,6 +31,13 @@ public class GameManager : MonoBehaviour
     public int DiamondPoints = 5;
 
     public static void ResetGame(){
+        Destroy(instance.levelManager.gameObject);
+        instance.levelManager = null;
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public static void ContinueGame(){
+        instance.levelManager.RecyclePipes();
         SceneManager.LoadScene("SampleScene");
     }
 
@@ -72,8 +79,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game scene starting");
         goldCount = copperCount = ironCount = diamondCount = maxDepth = 0;
 
-        levelManager = FindObjectOfType<LevelManager>();
-        levelManager.Initialize();
+        cameraFollow = FindObjectOfType<CameraFollow>();
+        if(!levelManager){
+            levelManager = FindObjectOfType<LevelManager>();
+            levelManager.Initialize();
+        } else {
+            levelManager.FindUI();
+        }
 
         CreateCharacterAndDrill();
     }
@@ -81,7 +93,8 @@ public class GameManager : MonoBehaviour
     private void CreateCharacterAndDrill()
     {
         Vector3Int pos = new Vector3Int(levelManager.levelWidth/2, 0, 0);
-        player = Instantiate<GameObject>(characterPrefab, pos, Quaternion.Euler(Vector3.zero));
+        if(player == null)
+            player = Instantiate<GameObject>(characterPrefab, pos, Quaternion.Euler(Vector3.zero));
         DrillController drillComponent = player.GetComponent<DrillController>();
         drillComponent.position = new Vector2Int(pos.x, pos.y);
 
@@ -120,4 +133,7 @@ public class GameManager : MonoBehaviour
         maxDepth = Mathf.Max(depth, maxDepth);
     }
 
+    public MapLevel GetMap(){
+        return levelManager.LevelMap;
+    }
 }
