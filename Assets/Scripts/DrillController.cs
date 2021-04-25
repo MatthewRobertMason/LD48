@@ -12,6 +12,8 @@ public class DrillController : MonoBehaviour
     public Vector2Int position;
     public float visionRadius = 3.25f;
     private int length = 0;
+    public int RemainingPipe = 40;
+    public int PipePerIron = 5;
 
     public Sprite tile_right_drill;
     public Sprite tile_left_drill;
@@ -71,6 +73,8 @@ public class DrillController : MonoBehaviour
         if(type == ResourceType.Pipe){
             GameOver();
             return false;
+        } else if(type == ResourceType.Iron){
+            RemainingPipe += PipePerIron;
         }
 
         gameManager.AccumulateResourceScore(type);
@@ -88,6 +92,12 @@ public class DrillController : MonoBehaviour
             }
 
             if(!AccumulateResource(levelManager.CollectResource(position.x, position.y))){
+                return;
+            }
+
+            RemainingPipe--;
+            if(RemainingPipe < 0){
+                GameOver();
                 return;
             }
 
