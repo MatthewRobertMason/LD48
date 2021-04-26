@@ -5,6 +5,7 @@ using UnityEngine;
 public class AudioController : MonoBehaviour
 {
     public AudioManager audioManager;
+    public SFXManager sfxManager;
 
     [SerializeField]
     [Range(0.0f, 1.0f)]
@@ -19,6 +20,7 @@ public class AudioController : MonoBehaviour
     void Start()
     {
         audioManager = FindObjectOfType<AudioManager>();
+        sfxManager = FindObjectOfType<SFXManager>();
     }
 
     void Update()
@@ -26,6 +28,7 @@ public class AudioController : MonoBehaviour
         if (audioManager != null)
         {
             audioManager.SourceAudio.volume = volume;
+            sfxManager.Volume = volume;
         }
     }
 

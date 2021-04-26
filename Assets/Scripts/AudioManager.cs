@@ -40,13 +40,15 @@ public class AudioManager : MonoBehaviour
 
     public void NextTrack()
     {
-        SourceAudio.clip = tracks[(track + 1) % tracks.Length];
+        track = (track + 1) % tracks.Length;
+        SourceAudio.clip = tracks[track];
         SourceAudio.Play();
     }
 
     public void PrevTrack()
     {
-        SourceAudio.clip = tracks[(track - 1) % tracks.Length];
+        track = (track + tracks.Length - 1) % tracks.Length;
+        SourceAudio.clip = tracks[track];
         SourceAudio.Play();
     }
 
