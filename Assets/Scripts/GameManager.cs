@@ -29,16 +29,27 @@ public class GameManager : MonoBehaviour
     public int GoldPoints = 3;
     public int DiamondPoints = 5;
 
+    bool restartGame = false;
+
     public void ResetGame(){
         Destroy(levelManager.gameObject);
         SceneManager.LoadScene("SampleScene");
-        Start();
+        restartGame = true;
     }
 
     public void ContinueGame(){
         levelManager.RecyclePipes();
         SceneManager.LoadScene("SampleScene");
-        Start();
+        restartGame = true;
+    }
+
+    public void FixedUpdate()
+    {
+        if (restartGame)
+        {
+            Start();
+            restartGame = false;
+        }
     }
 
     private void Awake()
