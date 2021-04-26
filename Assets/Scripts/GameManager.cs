@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
 
         drillComponent.LockMovement = true;
         drillComponent.ForcedMovement = 10;
-        drillComponent.PauseTime = 3.0f;
+        drillComponent.PauseTime = soundEffectManager.StartSource.clip.length * 0.9f;
     }
 
     public void AccumulateResourceScore(ResourceType type){
