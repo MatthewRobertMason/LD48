@@ -14,6 +14,26 @@ namespace Assets.Scripts.Classes
     {
         public string name;
         public FogTiles[] Rows;
+
+        public int Width
+        {
+            get 
+            { 
+                if (Rows != null && Rows.Count() > 0)
+                {
+                    return Rows[0].Columns.Count();
+                }
+
+                return 0;
+            }
+        }
+        public int Height
+        {
+            get
+            {
+                return Rows.Count();
+            }
+        }
     }
 
     [Serializable]
