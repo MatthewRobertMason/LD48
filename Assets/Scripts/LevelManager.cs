@@ -19,6 +19,7 @@ public class LevelManager : MonoBehaviour
     public int initialHeight = 200;
     public int chunkHeight = 32;
     public int bedrockBorder = 8;
+    public int fogStartDepth = 3;
 
     [Header("TileMaps")]
     public Tilemap Background;
@@ -161,9 +162,9 @@ public class LevelManager : MonoBehaviour
             Resource.SetTile(pos, resource);
         }
 
-        if (y > 3 && fog)
+        if (y > fogStartDepth && fog)
         {
-            FogOfWar.SetTile(pos, FogOfWarTile);
+            FogOfWar.SetTile(pos, foreGround);
         }
     }
 
@@ -268,7 +269,11 @@ public class LevelManager : MonoBehaviour
 
                             pos.x = x;
                             pos.y = -1 * (y + chunkHeight * layer);
-                            FogOfWarDecoration.SetTile(pos, tile);
+
+                            if (pos.y > fogStartDepth)
+                            {
+                                FogOfWarDecoration.SetTile(pos, tile);
+                            }
                             x++;
                         }
 
