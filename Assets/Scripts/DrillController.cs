@@ -68,12 +68,22 @@ public class DrillController : MonoBehaviour
 
     private GameManager gameManager;
     private LevelManager levelManager;
+    private AudioManager audioManager;
     private CameraFollow cameraFollow;
     private SFXManager soundEffects;
 
     public float timePerAction = 1.0f;
     public float timePerActionForced = 0.25f;
     private float timePassed = 0.0f;
+
+    private float pauseTime = 0.0f;
+    public float PauseTime
+    {
+        get => pauseTime;
+        set => pauseTime = value;
+    }
+
+    public bool pause = false;
 
     public void Awake()
     {
@@ -84,6 +94,7 @@ public class DrillController : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         levelManager = FindObjectOfType<LevelManager>();
+        audioManager = FindObjectOfType<AudioManager>();
         cameraFollow = FindObjectOfType<CameraFollow>();
         soundEffects = GetComponent<SFXManager>();
         gauge = GetComponentInChildren<PressureGauge>();
@@ -102,26 +113,38 @@ public class DrillController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        float maxTime = timePerAction;
-        if (forcedMovement > 0)
+        if (pauseTime > 0.0f || pause)
         {
-            maxTime = timePerActionForced;
+            pauseTime -= Time.fixedDeltaTime;
         }
-        
-        timePassed += Time.fixedDeltaTime;
-        gauge.SetTime(maxTime - timePassed);
-
-        if (timePassed > maxTime)
+        else
         {
-            timePassed -= maxTime;
-            MoveCharacter();
-
+            float maxTime = timePerAction;
             if (forcedMovement > 0)
             {
-                forcedMovement--;
-                if (forcedMovement == 0)
+                maxTime = timePerActionForced;
+
+                if (audioManager.SourceAudio.isPlaying == false)
                 {
-                    lockMovement = false;
+                    audioManager.ReturnToTrack();
+                }
+            }
+
+            timePassed += Time.fixedDeltaTime;
+            gauge.SetTime(maxTime - timePassed);
+
+            if (timePassed > maxTime)
+            {
+                timePassed -= maxTime;
+                MoveCharacter();
+
+                if (forcedMovement > 0)
+                {
+                    forcedMovement--;
+                    if (forcedMovement == 0)
+                    {
+                        lockMovement = false;
+                    }
                 }
             }
         }
