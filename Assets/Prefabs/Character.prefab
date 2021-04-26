@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 423007391309329276}
   - component: {fileID: 423007391309329277}
   - component: {fileID: -6233800727448897839}
+  - component: {fileID: 7301018322952354157}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -137,3 +138,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!81 &7301018322952354157
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423007391309329278}
+  m_Enabled: 1
