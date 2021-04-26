@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     bool rerunStartFunction = false;
 
     public void ResetGame(){
-        Destroy(levelManager.gameObject);
+        DestroyImmediate(levelManager.gameObject);
         SceneManager.LoadScene("SampleScene");
         rerunStartFunction = true;
     }
