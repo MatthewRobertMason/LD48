@@ -111,7 +111,11 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game scene starting");
         goldCount = copperCount = ironCount = diamondCount = maxDepth = 0;
 
-        levelManager.Initialize();
+        if (levelManager.LevelMap == null)
+        {
+            levelManager.Initialize();
+        }
+
         levelManager.FindUI();
         
         CreateCharacterAndDrill();
