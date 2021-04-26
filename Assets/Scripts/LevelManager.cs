@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
     public Tile CopperTile;
     public Tile GoldTile;
     public Tile DiamondTile;
+    public Tile RadioactiveTile;
     
     public Tile GrassTile;
     public TileBase FogOfWarTile;
@@ -152,6 +153,10 @@ public class LevelManager : MonoBehaviour
 
             case ResourceType.RustyPipe:
                 resource = RustyPipeTile;
+                break;
+
+            case ResourceType.Radioactive:
+                resource = RadioactiveTile;
                 break;
         }
 
