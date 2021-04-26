@@ -272,6 +272,9 @@ TextureImporter:
   - first:
       213: -4177570139275879256
     second: sheet_89
+  - first:
+      213: -7252327730598331957
+    second: sheet_90
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -2270,6 +2273,27 @@ TextureImporter:
       bones: []
       spriteID: 8ac9e20971a4606c0800000000000000
       internalID: -4177570139275879256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sheet_90
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc9b8fe7a5e8a5b90800000000000000
+      internalID: -7252327730598331957
       vertices: []
       indices: 
       edges: []

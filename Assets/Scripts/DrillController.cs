@@ -159,7 +159,7 @@ public class DrillController : MonoBehaviour
 
     private bool AccumulateResource(ResourceType type){
         Debug.Log($"Resource get {type}");
-        if(type == ResourceType.Pipe){
+        if(type == ResourceType.Pipe || type == ResourceType.Radioactive){
             GameOver();
             return false;
         } else if(type == ResourceType.Iron){
