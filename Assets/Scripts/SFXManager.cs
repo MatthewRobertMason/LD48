@@ -6,12 +6,14 @@ public class SFXManager : MonoBehaviour
 {
     public AudioSource MoveSource;
     public AudioSource ExplodeSource;
+    public AudioSource StartSource;
 
     public float Volume{
         get => MoveSource.volume;
         set {
             MoveSource.volume = value;
             ExplodeSource.volume = value;
+            StartSource.volume = value;
         }
     }
 
@@ -27,5 +29,9 @@ public class SFXManager : MonoBehaviour
 
     public void PlayExplode(){
         ExplodeSource.Play();
+    }
+
+    public void PlayStart(){
+        StartSource.Play();
     }
 }

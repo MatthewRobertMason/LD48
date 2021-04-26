@@ -52,6 +52,7 @@ public class DrillController : MonoBehaviour
     }
 
     private SpriteRenderer sprite;
+    private Animator animator;
 
     private Vector2Int Position
     {
@@ -68,12 +69,22 @@ public class DrillController : MonoBehaviour
 
     private GameManager gameManager;
     private LevelManager levelManager;
+    private AudioManager audioManager;
     private CameraFollow cameraFollow;
     private SFXManager soundEffects;
 
     public float timePerAction = 1.0f;
     public float timePerActionForced = 0.25f;
     private float timePassed = 0.0f;
+
+    private float pauseTime = 0.0f;
+    public float PauseTime
+    {
+        get => pauseTime;
+        set => pauseTime = value;
+    }
+
+    public bool pause = false;
 
     public void Awake()
     {
@@ -84,12 +95,14 @@ public class DrillController : MonoBehaviour
     {
         gameManager = FindObjectOfType<GameManager>();
         levelManager = FindObjectOfType<LevelManager>();
+        audioManager = FindObjectOfType<AudioManager>();
         cameraFollow = FindObjectOfType<CameraFollow>();
         soundEffects = GetComponent<SFXManager>();
         gauge = GetComponentInChildren<PressureGauge>();
         gauge.SetMaxTime(timePerAction);
 
         sprite = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         levelManager.pipeDisplay.text = RemainingPipe.ToString();
         facingDirection = Vector2Int.down;
         levelManager.SetPipe(position.x, position.y, 0);
@@ -102,26 +115,38 @@ public class DrillController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        float maxTime = timePerAction;
-        if (forcedMovement > 0)
+        if (pauseTime > 0.0f || pause)
         {
-            maxTime = timePerActionForced;
+            pauseTime -= Time.fixedDeltaTime;
         }
-        
-        timePassed += Time.fixedDeltaTime;
-        gauge.SetTime(maxTime - timePassed);
-
-        if (timePassed > maxTime)
+        else
         {
-            timePassed -= maxTime;
-            MoveCharacter();
-
+            float maxTime = timePerAction;
             if (forcedMovement > 0)
             {
-                forcedMovement--;
-                if (forcedMovement == 0)
+                maxTime = timePerActionForced;
+
+                if (audioManager.SourceAudio.isPlaying == false)
                 {
-                    lockMovement = false;
+                    audioManager.ReturnToTrack();
+                }
+            }
+
+            timePassed += Time.fixedDeltaTime;
+            gauge.SetTime(maxTime - timePassed);
+
+            if (timePassed > maxTime)
+            {
+                timePassed -= maxTime;
+                MoveCharacter();
+
+                if (forcedMovement > 0)
+                {
+                    forcedMovement--;
+                    if (forcedMovement == 0)
+                    {
+                        lockMovement = false;
+                    }
                 }
             }
         }
@@ -179,19 +204,23 @@ public class DrillController : MonoBehaviour
             length++;
             if (previousMove.x == 1)
             {
-                this.sprite.sprite = tile_right_drill;
+                // this.sprite.sprite = tile_right_drill;
+                this.animator.SetInteger("Direction", 1);
             }
             else if (previousMove.x == -1)
             {
-                this.sprite.sprite = tile_left_drill;
+                // this.sprite.sprite = tile_left_drill;
+                this.animator.SetInteger("Direction", 3);
             }
             else if (previousMove.y == 1)
             {
-                this.sprite.sprite = tile_up_drill;
+                // this.sprite.sprite = tile_up_drill;
+                this.animator.SetInteger("Direction", 0);
             }
             else if (previousMove.y == -1)
             {
-                this.sprite.sprite = tile_down_drill;
+                // this.sprite.sprite = tile_down_drill;
+                this.animator.SetInteger("Direction", 2);
             }
         }
 
@@ -347,7 +376,7 @@ public class DrillController : MonoBehaviour
                 PipePerIron += 2;
                 break;
             case ResearchType.Speed:
-                timePerAction++;
+                timePerAction += 0.2f;
                 gauge.SetMaxTime(timePerAction);
                 break;
             case ResearchType.View:

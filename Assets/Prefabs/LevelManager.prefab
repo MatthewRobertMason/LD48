@@ -842,6 +842,9 @@ MonoBehaviour:
     - Columns:
       - {fileID: 11400000, guid: e79f2dbc8ad81364994637567a6b7e45, type: 2}
       - {fileID: 11400000, guid: 57106e0e0c44bb44685a607d7b5d9b5d, type: 2}
+    - Columns:
+      - {fileID: 11400000, guid: 07ec309d69c85fe498c732d68b5c7ebd, type: 2}
+      - {fileID: 11400000, guid: 5a84210549e21f340b585e837a0ee9dc, type: 2}
   - name: bone-2
     Rows:
     - Columns:
