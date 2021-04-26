@@ -711,6 +711,9 @@ MonoBehaviour:
   GoldTile: {fileID: 11400000, guid: 1b687a9ca5f7061489566fc0cbb738a1, type: 2}
   DiamondTile: {fileID: 11400000, guid: 6867e301487a7fb43bbd5a282e4d2074, type: 2}
   GrassTile: {fileID: 11400000, guid: 804a738678841a141901cd1866121808, type: 2}
-  FogOfWarTile: {fileID: 11400000, guid: 5a26e00fcb48d47478f23b3b492d6523, type: 2}
+  FogOfWarTile: {fileID: 11400000, guid: 0c939e69e3b9eb14eb90337119bae3dc, type: 2}
   PipeTile: {fileID: 11400000, guid: 27ea3f3ec1fc97348a039cc45148b553, type: 2}
   RustyPipeTile: {fileID: 11400000, guid: d47573b5730b11844bccd638a4661d10, type: 2}
+  fogObjects:
+  - {fileID: 6405092857883369959, guid: 01d72e63a5537fa4fb302e7e381add7c, type: 3}
+  - {fileID: 5452044382738157376, guid: a8c7da72983096e488c175ef0eae73f9, type: 3}
