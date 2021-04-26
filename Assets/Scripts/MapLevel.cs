@@ -51,13 +51,20 @@ public class MapLevel
     {
         get 
         { 
-            int chunk_index = y/chunkHeight;
-            while(chunk_index > Cells.Count){
-                Cells.Add(CreateChunk(Cells.Count));
-            }
-            currentChunks = Cells.Count;
-            return Cells[chunk_index][x, y % chunkHeight]; 
+            EnsureDepth(y);
+            return Cells[y/chunkHeight][x, y % chunkHeight]; 
         }
+    }
+
+    public int EnsureDepth(int y){
+        int chunk_index = y/chunkHeight;
+        int generated = 0;
+        while(chunk_index >= Cells.Count){
+            Cells.Add(CreateChunk(Cells.Count));
+            generated++;
+        }
+        currentChunks = Cells.Count;
+        return generated;
     }
 
     public bool OutOfBounds(int x, int y){

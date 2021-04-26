@@ -677,7 +677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pipeDisplay: {fileID: 0}
   levelWidth: 64
-  initialHeight: 200
+  initialHeight: 32
   chunkHeight: 32
   bedrockBorder: 8
   Background: {fileID: 2122056341754809266}
