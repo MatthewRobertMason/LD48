@@ -31,6 +31,20 @@ public class PipeTileScript : Tile {
             }
     }
 
+    private GameManager gameManager;
+    public GameManager GManager
+    {
+        get 
+        { 
+            if (gameManager == null)
+            {
+                gameManager = FindObjectOfType<GameManager>();
+            }
+
+            return gameManager; 
+        }
+    }
+
     // This determines if the Tile at the position is the same RoadTile.
     private bool isPipe(ITilemap tilemap, Vector3Int position, int index)
     {
@@ -38,7 +52,7 @@ public class PipeTileScript : Tile {
     }
 
     private int pipeIndex(Vector3Int location){
-        MapLevel map = GameManager.instance.GetMap();
+        MapLevel map = GManager.GetMap();
         if(map[location.x, -location.y].resourceType == type)
             return map[location.x, -location.y].variant;
 
