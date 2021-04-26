@@ -149,6 +149,8 @@ public class MapLevel
             }
         }
 
+        levelManager.AddFogSprites(LayerLevel);
+
         return temp;
     }
 

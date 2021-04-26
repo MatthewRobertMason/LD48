@@ -209,6 +209,30 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public GameObject[] fogObjects;
+
+    public void AddFogSprites(int layer)
+    {
+        if (fogObjects != null && fogObjects.Length > 0)
+        {
+            int genNum = Random.Range(0, 4);
+
+            for (int i = 0; i < genNum; i++)
+            {
+                int sprite = Random.Range(0, fogObjects.Length);
+                int yVar = (Random.Range(4, chunkHeight-4));
+                int xTemp = levelWidth / genNum;
+
+                int xVar = Random.Range(xTemp * i, xTemp * (i + 1));
+
+
+                Vector3 pos = new Vector3(xVar,-1 * (yVar + chunkHeight * layer), 0.0f); ;
+
+                Instantiate(fogObjects[sprite], pos, Quaternion.Euler(Vector3.zero), this.transform);
+            }
+        }
+    }
+
     public void RecyclePipes(){
         var changes = levelMap.Replace(ResourceType.Pipe, ResourceType.RustyPipe);
         foreach(var index in changes){
