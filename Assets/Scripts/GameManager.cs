@@ -86,7 +86,6 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         levelManager.gameObject.SetActive(false);
-        SceneManager.LoadScene("SummaryScene");
         rerunStartFunction = true;
     }
 

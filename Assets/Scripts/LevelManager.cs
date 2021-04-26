@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour
     public Tile DiamondTile;
     
     public Tile GrassTile;
-    public Tile FogOfWarTile;
+    public TileBase FogOfWarTile;
 
     public TileBase PipeTile;
     public TileBase RustyPipeTile;
