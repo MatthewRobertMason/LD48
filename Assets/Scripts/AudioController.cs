@@ -6,6 +6,7 @@ public class AudioController : MonoBehaviour
 {
     public AudioManager audioManager;
     public SFXManager sfxManager;
+    public UnityEngine.UI.Slider volumeSlider;
 
     [SerializeField]
     [Range(0.0f, 1.0f)]
@@ -21,6 +22,7 @@ public class AudioController : MonoBehaviour
     {
         audioManager = FindObjectOfType<AudioManager>();
         sfxManager = FindObjectOfType<SFXManager>();
+        volumeSlider.value = volume = sfxManager.Volume;
     }
 
     void Update()
