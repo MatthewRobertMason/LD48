@@ -28,10 +28,9 @@ public class TextMarquee : MonoBehaviour
         text.text = value;
 
         float x = MaskContainer.rect.width;
-        float y = text.rectTransform.position.y;
-        float z = text.rectTransform.position.z;
+        float y = text.rectTransform.anchoredPosition.y;
 
-        text.rectTransform.position = new Vector3(x, y, 0.0f);
+        text.rectTransform.anchoredPosition = new Vector2(x, y);
     }
 
     // Update is called once per frame
