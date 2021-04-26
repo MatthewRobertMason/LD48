@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Enums
 {
+    [System.Serializable]
     public enum ResourceType
     {
         None,
@@ -13,6 +14,8 @@ namespace Assets.Scripts.Enums
         Copper,
         Gold,
         Diamond,
-        Grass
+        Grass,
+        Pipe,
+        RustyPipe
     }
 }
