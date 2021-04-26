@@ -9,7 +9,6 @@ public class LevelManager : MonoBehaviour
 {
     private GameManager gameManager;
     private MapLevel levelMap;
-    public static LevelManager level;
 
     [Header("UI")]
     public UnityEngine.UI.Text pipeDisplay;
@@ -37,9 +36,10 @@ public class LevelManager : MonoBehaviour
     public Tile DiamondTile;
     
     public Tile GrassTile;
-    public Tile FogOfWarTile;
+    public TileBase FogOfWarTile;
 
     public TileBase PipeTile;
+    public TileBase RustyPipeTile;
 
     public MapLevel LevelMap
     {
@@ -51,24 +51,32 @@ public class LevelManager : MonoBehaviour
     {
         if (FindObjectsOfType<LevelManager>().Length > 1)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         } else {
-            level = this;
+            DontDestroyOnLoad(this);
         }
     }
 
-    public void Start()
-    {
-        gameManager = FindObjectOfType<GameManager>();
+    public void FindUI(){
+        pipeDisplay = GameObject.Find("PipeText").GetComponent<UnityEngine.UI.Text>();
     }
 
     public void Initialize()
     {
+        gameManager = FindObjectOfType<GameManager>();
         levelMap = new MapLevel(this);
 
         for (int i = 0; i < LevelMap.CurrentChunks; i++)
         {
             DrawLayer(i);
+        }
+    }
+
+    public void EnsureDepth(int yy){
+        int chunk = yy / chunkHeight;
+        int generated = LevelMap.EnsureDepth(yy);
+        for(int ii = 0; ii < generated; ii++){
+            DrawLayer(chunk + ii);
         }
     }
 
@@ -94,7 +102,7 @@ public class LevelManager : MonoBehaviour
         return levelMap[x, -y].resourceType;
     }
 
-    public void DrawTile(int x, int y)
+    public void DrawTile(int x, int y, bool fog=true)
     {
         GameTile tile = levelMap[x, y];
         Vector3Int pos = new Vector3Int(x, -y, 0);
@@ -138,6 +146,10 @@ public class LevelManager : MonoBehaviour
             case ResourceType.Pipe:
                 resource = PipeTile;
                 break;
+
+            case ResourceType.RustyPipe:
+                resource = RustyPipeTile;
+                break;
         }
 
         Background.SetTile(pos, foreGround);
@@ -146,35 +158,85 @@ public class LevelManager : MonoBehaviour
         {
             Resource.SetTile(pos, resource);
         }
-        FogOfWar.SetTile(pos, FogOfWarTile);
+
+        if (y > 3 && fog)
+        {
+            FogOfWar.SetTile(pos, FogOfWarTile);
+        }
     }
 
-    public void ClearFogOfWar(int xx, int yy, float radius)
+    public void DigTile(int x, int y)
+    {
+        Vector3Int pos = new Vector3Int(x, y, 0);
+        Foreground.SetTile(pos, null);
+    }
+
+    public void RemoveGrass(int x, int y)
+    {
+        GameTile tile = levelMap[x, y];
+        if (tile.resourceType == ResourceType.Grass)
+        {
+            tile.resourceType = ResourceType.None;
+        }
+    }
+
+    public void ClearFogOfWar(int x, int y, float radius)
     {
         int xClampMax = levelWidth-1;
-        int yClampMax = (levelMap.CurrentChunks * chunkHeight - 1) * -1;
+        // int yClampMax = (levelMap.CurrentChunks * chunkHeight - 1) * -1;
         int intRadius = (int)radius;
 
-        int xMin = Mathf.Clamp(xx - intRadius, 0, xClampMax);
-        int xMax = Mathf.Clamp(xx + intRadius, 0, xClampMax);
-        int yMin = Mathf.Clamp(yy - intRadius, yClampMax, 0);
-        int yMax = Mathf.Clamp(yy + intRadius, yClampMax, 0);
+        int xMin = Mathf.Clamp(x - intRadius, 0, xClampMax);
+        int xMax = Mathf.Clamp(x + intRadius, 0, xClampMax);
+        int yMin = y - intRadius;
+        int yMax = y + intRadius;
+        EnsureDepth(-yMin);
 
-        Vector2 pos = new Vector2Int(xx, yy);
+        Vector2 pos = new Vector2Int(x, y);
         Vector2 test = new Vector2Int();
 
-        for (int x = xMin; x <= xMax; x++)
+        for (int xx = xMin; xx <= xMax; xx++)
         {
-            for (int y = yMin; y <= yMax; y++)
+            for (int yy = yMin; yy <= yMax; yy++)
             {
-                test.x = x;
-                test.y = y;
-
+                test.x = xx;
+                test.y = yy;
                 if (Vector2.Distance(pos, test) <= radius)
                 {
-                    FogOfWar.SetTile(new Vector3Int(x, y, 0), null);
+                    FogOfWar.SetTile(new Vector3Int(xx, yy, 0), null);
                 }
             }
+        }
+    }
+
+    public GameObject[] fogObjects;
+
+    public void AddFogSprites(int layer)
+    {
+        if (fogObjects != null && fogObjects.Length > 0)
+        {
+            int genNum = Random.Range(0, 4);
+
+            for (int i = 0; i < genNum; i++)
+            {
+                int sprite = Random.Range(0, fogObjects.Length);
+                int yVar = (Random.Range(4, chunkHeight-4));
+                int xTemp = levelWidth / genNum;
+
+                int xVar = Random.Range(xTemp * i, xTemp * (i + 1));
+
+
+                Vector3 pos = new Vector3(xVar,-1 * (yVar + chunkHeight * layer), 0.0f); ;
+
+                Instantiate(fogObjects[sprite], pos, Quaternion.Euler(Vector3.zero), this.transform);
+            }
+        }
+    }
+
+    public void RecyclePipes(){
+        var changes = levelMap.Replace(ResourceType.Pipe, ResourceType.RustyPipe);
+        foreach(var index in changes){
+            DrawTile(index.x, index.y, false);
         }
     }
 }

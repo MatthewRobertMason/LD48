@@ -34,6 +34,7 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
+  type: 6
   horizontal: {fileID: 2096794751010941262, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   vertical: {fileID: -4666756510880264869, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   top_right: {fileID: -3986187285796142972, guid: 913b5177b9e788e4b9185671a0960654, type: 3}

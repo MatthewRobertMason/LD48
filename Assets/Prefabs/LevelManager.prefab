@@ -28,7 +28,7 @@ Transform:
   m_LocalPosition: {x: -0.5, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2122056341754809268}
+  - {fileID: 8850825367370863923}
   - {fileID: 2122056341537086240}
   - {fileID: 2122056341912643899}
   - {fileID: 2122056340750227001}
@@ -343,9 +343,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2122056341754809268}
+  - component: {fileID: 8850825367370863923}
   - component: {fileID: 2122056341754809266}
   - component: {fileID: 2122056341754809267}
+  - component: {fileID: 5789766922115679611}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -353,8 +354,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2122056341754809268
-Transform:
+--- !u!224 &8850825367370863923
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -367,6 +368,11 @@ Transform:
   m_Father: {fileID: 2122056340238922365}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1839735485 &2122056341754809266
 Tilemap:
   m_ObjectHideFlags: 0
@@ -448,7 +454,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3fd626fda10ddd449ac74721688dee86, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -477,6 +483,19 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!114 &5789766922115679611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122056341754809269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &2122056341912643900
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,8 +694,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f1594f02316b345b5ce78510a250d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pipeDisplay: {fileID: 0}
   levelWidth: 64
-  initialHeight: 200
+  initialHeight: 32
   chunkHeight: 32
   bedrockBorder: 8
   Background: {fileID: 2122056341754809266}
@@ -689,7 +709,8 @@ MonoBehaviour:
   IronTile: {fileID: 11400000, guid: b42516eac32476e4fa00960621671628, type: 2}
   CopperTile: {fileID: 11400000, guid: 3fa6e66ba6c944548906dee452be0be6, type: 2}
   GoldTile: {fileID: 11400000, guid: 1b687a9ca5f7061489566fc0cbb738a1, type: 2}
-  DiamondTile: {fileID: 11400000, guid: 5c01080fb4910644aa328e4ebd8e8b92, type: 2}
+  DiamondTile: {fileID: 11400000, guid: 6867e301487a7fb43bbd5a282e4d2074, type: 2}
   GrassTile: {fileID: 11400000, guid: 804a738678841a141901cd1866121808, type: 2}
   FogOfWarTile: {fileID: 11400000, guid: 5a26e00fcb48d47478f23b3b492d6523, type: 2}
   PipeTile: {fileID: 11400000, guid: 27ea3f3ec1fc97348a039cc45148b553, type: 2}
+  RustyPipeTile: {fileID: 11400000, guid: d47573b5730b11844bccd638a4661d10, type: 2}

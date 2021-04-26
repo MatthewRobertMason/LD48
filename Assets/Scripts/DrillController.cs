@@ -19,9 +19,9 @@ public class DrillController : MonoBehaviour
     public Vector2Int position;
     public float visionRadius = 3.25f;
     private int length = 0;
-    public int RemainingPipe = 40;
+    public int RemainingPipe = 70;
     public int PipePerIron = 5;
-    public int ResearchCost = 10;
+    public int ResearchCost = 3;
 
     public Sprite tile_right_drill;
     public Sprite tile_left_drill;
@@ -67,6 +67,7 @@ public class DrillController : MonoBehaviour
     private GameManager gameManager;
     private LevelManager levelManager;
     private CameraFollow cameraFollow;
+    private SFXManager soundEffects;
 
     public float timePerAction = 1.0f;
     public float timePerActionForced = 0.25f;
@@ -82,6 +83,7 @@ public class DrillController : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         levelManager = FindObjectOfType<LevelManager>();
         cameraFollow = FindObjectOfType<CameraFollow>();
+        soundEffects = GetComponent<SFXManager>();
 
         sprite = GetComponent<SpriteRenderer>();
         levelManager.pipeDisplay.text = RemainingPipe.ToString();
@@ -101,9 +103,9 @@ public class DrillController : MonoBehaviour
         {
             maxTime = timePerActionForced;
         }
-
+        
         timePassed += Time.fixedDeltaTime;
-
+        
         if (timePassed > maxTime)
         {
             timePassed -= maxTime;
@@ -121,7 +123,8 @@ public class DrillController : MonoBehaviour
     }
 
     public void GameOver(){
-        SceneManager.LoadScene("SummaryScene");
+        gameManager.soundEffectManager.PlayExplode();
+        gameManager.GameOver();
     }
 
     private bool AccumulateResource(ResourceType type){
@@ -131,6 +134,8 @@ public class DrillController : MonoBehaviour
             return false;
         } else if(type == ResourceType.Iron){
             RemainingPipe += PipePerIron;
+        } else if(type == ResourceType.RustyPipe){
+            RemainingPipe += 1;
         }
         AdvanceResearch(type);
 
@@ -161,6 +166,7 @@ public class DrillController : MonoBehaviour
                 return;
             }
 
+            gameManager.soundEffectManager.PlayMove();
             gameManager.UpdateDepth(-position.y);
             levelManager.SetPipe(position.x, position.y, length);
             previousMove = facingDirection;
@@ -185,38 +191,105 @@ public class DrillController : MonoBehaviour
 
         this.transform.position = new Vector3(position.x, position.y, 0.0f);
         levelManager.ClearFogOfWar(position.x, position.y, visionRadius);
+
+        levelManager.DigTile(position.x, position.y);
     }
 
+    Vector2 oldVec;
+
+    bool ignoreX = false;
+    bool ignoreY = false;
     private void OnMove(InputValue input)
     {
         if (!lockMovement)
         {
             Vector2 vec = input.Get<Vector2>();
-            Vector2Int moveVec = Vector2Int.zero;
+            Vector2 _vec = vec;
 
-            if (vec.x != 0.0f)
+            if (ignoreX == true)
             {
-                moveVec.x = (vec.x < 0) ? -1 : 1;
+                vec.x = 0.0f;
             }
 
-            if (vec.y != 0.0f)
+            if (ignoreY == true)
             {
-                moveVec.y = (vec.y < 0) ? -1 : 1;
+                vec.y = 0.0f;
             }
 
-            if (moveVec.x != 0 && moveVec.y != 0)
+            if (vec != Vector2.zero)
             {
-                moveVec.x = 0;
-            }
+                Vector2Int moveVec = Vector2Int.zero;
 
-            if (moveVec != Vector2.zero)
-            {
-                if (moveVec != -facingDirection && facingDirection != -previousMove)
+                // Convert input into ints
+                if (vec.x != 0.0f)
                 {
-                    facingDirection = moveVec;
-                    timePassed = 0;
-                    MoveCharacter();
+                    moveVec.x = (vec.x < 0) ? -1 : 1;
                 }
+
+                if (vec.y != 0.0f)
+                {
+                    moveVec.y = (vec.y < 0) ? -1 : 1;
+                }
+
+                if (previousMove != moveVec)
+                {
+                    //if (previousMove.y == moveVec.y)
+                    //{
+                    //    moveVec.y = 0;
+                    //}
+                    //
+                    //if (previousMove.x == moveVec.x)
+                    //{
+                    //    moveVec.x = 0;
+                    //}
+
+                    if (moveVec.x != 0 && moveVec.y != 0)
+                    {
+                        if (previousMove.y != 0)
+                        {
+                            moveVec.y = 0;
+                        }
+                        else if (previousMove.x != 0)
+                        {
+                            moveVec.x = 0;
+                        }
+                    }
+                }
+
+                // Don't allow diagonal moves
+                if (moveVec.x != 0 && moveVec.y != 0)
+                {
+                    moveVec = Vector2Int.zero;
+                }
+
+                if (moveVec != Vector2.zero)
+                {
+                    if (moveVec != -facingDirection && facingDirection != -previousMove)
+                    {
+                        facingDirection = moveVec;
+                        timePassed = 0;
+                        oldVec = vec;
+                        MoveCharacter();
+                    }
+                }
+            }
+
+            if (_vec.y == 0.0f)
+            {
+                ignoreY = false;
+            }
+            else
+            {
+                ignoreY = true;
+            }
+
+            if (_vec.x == 0.0f)
+            {
+                ignoreX = false;
+            }
+            else
+            {
+                ignoreX = true;
             }
         }
     }
@@ -224,7 +297,7 @@ public class DrillController : MonoBehaviour
     private void StartResearch(){
         research_cost_remaining = ResearchCost;
         active_research = (ResearchType)UnityEngine.Random.Range(0, (int)ResearchType.COUNT);
-        switch(UnityEngine.Random.Range(0, 2)){
+        switch(UnityEngine.Random.Range(0, 3)){
             case 0: 
                 research_resource = ResourceType.Copper; 
                 ResearchResourceText.text = "Copper";
@@ -232,6 +305,10 @@ public class DrillController : MonoBehaviour
             case 1: 
                 research_resource = ResourceType.Gold; 
                 ResearchResourceText.text = "Gold";
+                break;
+            case 2: 
+                research_resource = ResourceType.Diamond; 
+                ResearchResourceText.text = "Diamond";
                 break;
         }
         switch(active_research){
