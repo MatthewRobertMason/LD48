@@ -270,7 +270,7 @@ public class LevelManager : MonoBehaviour
                             pos.x = x;
                             pos.y = -1 * (y + chunkHeight * layer);
 
-                            if (pos.y > fogStartDepth)
+                            if (pos.y < -fogStartDepth)
                             {
                                 FogOfWarDecoration.SetTile(pos, tile);
                             }
