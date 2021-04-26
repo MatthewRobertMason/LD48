@@ -52,6 +52,7 @@ public class DrillController : MonoBehaviour
     }
 
     private SpriteRenderer sprite;
+    private Animator animator;
 
     private Vector2Int Position
     {
@@ -90,6 +91,7 @@ public class DrillController : MonoBehaviour
         gauge.SetMaxTime(timePerAction);
 
         sprite = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         levelManager.pipeDisplay.text = RemainingPipe.ToString();
         facingDirection = Vector2Int.down;
         levelManager.SetPipe(position.x, position.y, 0);
@@ -179,19 +181,23 @@ public class DrillController : MonoBehaviour
             length++;
             if (previousMove.x == 1)
             {
-                this.sprite.sprite = tile_right_drill;
+                // this.sprite.sprite = tile_right_drill;
+                this.animator.SetInteger("Direction", 1);
             }
             else if (previousMove.x == -1)
             {
-                this.sprite.sprite = tile_left_drill;
+                // this.sprite.sprite = tile_left_drill;
+                this.animator.SetInteger("Direction", 3);
             }
             else if (previousMove.y == 1)
             {
-                this.sprite.sprite = tile_up_drill;
+                // this.sprite.sprite = tile_up_drill;
+                this.animator.SetInteger("Direction", 0);
             }
             else if (previousMove.y == -1)
             {
-                this.sprite.sprite = tile_down_drill;
+                // this.sprite.sprite = tile_down_drill;
+                this.animator.SetInteger("Direction", 2);
             }
         }
 
