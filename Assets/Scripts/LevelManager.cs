@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 using Assets.Scripts.Enums;
+using Assets.Scripts.Classes;
 
 public class LevelManager : MonoBehaviour
 {
@@ -209,17 +210,19 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public GameObject[] fogObjects;
+    public GameObject[] fogObjects3;
+
+    public FogObject[] fogObjects;
 
     public void AddFogSprites(int layer)
     {
-        if (fogObjects != null && fogObjects.Length > 0)
+        if (fogObjects3 != null && fogObjects3.Length > 0)
         {
             int genNum = Random.Range(0, 4);
 
             for (int i = 0; i < genNum; i++)
             {
-                int sprite = Random.Range(0, fogObjects.Length);
+                int sprite = Random.Range(0, fogObjects3.Length);
                 int yVar = (Random.Range(4, chunkHeight-4));
                 int xTemp = levelWidth / genNum;
 
@@ -228,7 +231,7 @@ public class LevelManager : MonoBehaviour
 
                 Vector3 pos = new Vector3(xVar,-1 * (yVar + chunkHeight * layer), 0.0f); ;
 
-                Instantiate(fogObjects[sprite], pos, Quaternion.Euler(Vector3.zero), this.transform);
+                Instantiate(fogObjects3[sprite], pos, Quaternion.Euler(Vector3.zero), this.transform);
             }
         }
     }
