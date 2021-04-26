@@ -72,6 +72,14 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void EnsureDepth(int yy){
+        int chunk = yy / chunkHeight;
+        int generated = LevelMap.EnsureDepth(yy);
+        for(int ii = 0; ii < generated; ii++){
+            DrawLayer(chunk + ii);
+        }
+    }
+
     public void DrawLayer(int layer)
     {
         int yAdd = layer * chunkHeight;
@@ -175,13 +183,14 @@ public class LevelManager : MonoBehaviour
     public void ClearFogOfWar(int x, int y, float radius)
     {
         int xClampMax = levelWidth-1;
-        int yClampMax = (levelMap.CurrentChunks * chunkHeight - 1) * -1;
+        // int yClampMax = (levelMap.CurrentChunks * chunkHeight - 1) * -1;
         int intRadius = (int)radius;
 
         int xMin = Mathf.Clamp(x - intRadius, 0, xClampMax);
         int xMax = Mathf.Clamp(x + intRadius, 0, xClampMax);
-        int yMin = Mathf.Clamp(y - intRadius, yClampMax, 0);
-        int yMax = Mathf.Clamp(y + intRadius, yClampMax, 0);
+        int yMin = y - intRadius;
+        int yMax = y + intRadius;
+        EnsureDepth(-yMin);
 
         Vector2 pos = new Vector2Int(x, y);
         Vector2 test = new Vector2Int();
@@ -192,7 +201,6 @@ public class LevelManager : MonoBehaviour
             {
                 test.x = xx;
                 test.y = yy;
-
                 if (Vector2.Distance(pos, test) <= radius)
                 {
                     FogOfWar.SetTile(new Vector3Int(xx, yy, 0), null);
