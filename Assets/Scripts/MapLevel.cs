@@ -131,20 +131,20 @@ public class MapLevel
 
         if(LayerLevel >= 1){
             // Number of veins decrease as you go down
-            int veins = Mathf.Max(2, (int)Mathf.Ceil(5.0f - LayerLevel/4.0f));
+            int veins = Mathf.Max(1, (int)Mathf.Ceil(4.0f - LayerLevel/5.0f));
 
             for(var ii = 0; ii < veins; ii++){
                 // But get bigger as you go down
-                int size = Random.Range(3 + LayerLevel, 10 + LayerLevel*3);
+                int size = Random.Range(3 + LayerLevel, 10 + LayerLevel*2);
                 GenerateVein(size, ResourceType.Iron, temp, new Vector2Int(Random.Range(bedrockBorder, levelWidth - bedrockBorder), Random.Range(0, chunkHeight)));
 
-                size = Random.Range(3 + LayerLevel, 15 + LayerLevel*2);
+                size = Random.Range(3 + LayerLevel/2, 15 + LayerLevel);
                 GenerateVein(size, ResourceType.Copper, temp, new Vector2Int(Random.Range(bedrockBorder, levelWidth - bedrockBorder), Random.Range(0, chunkHeight)));
 
-                size = Random.Range(3 + LayerLevel, 8 + LayerLevel);
+                size = Random.Range(3 + LayerLevel/4, 8 + LayerLevel/2);
                 GenerateVein(size, ResourceType.Gold, temp, new Vector2Int(Random.Range(bedrockBorder, levelWidth - bedrockBorder), Random.Range(0, chunkHeight)));
 
-                size = Random.Range(3 + LayerLevel/2, 5 + LayerLevel/2);
+                size = Random.Range(3 + LayerLevel/8, 5 + LayerLevel/4);
                 GenerateVein(size, ResourceType.Diamond, temp, new Vector2Int(Random.Range(bedrockBorder, levelWidth - bedrockBorder), Random.Range(0, chunkHeight)));
             }
         }

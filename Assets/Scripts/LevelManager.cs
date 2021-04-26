@@ -76,8 +76,8 @@ public class LevelManager : MonoBehaviour
     }
 
     public void EnsureDepth(int yy){
-        int chunk = yy / chunkHeight;
-        int generated = LevelMap.EnsureDepth(yy);
+        int chunk = 1 + yy / chunkHeight;
+        int generated = LevelMap.EnsureDepth(yy + chunkHeight);
         for(int ii = 0; ii < generated; ii++){
             DrawLayer(chunk + ii);
         }

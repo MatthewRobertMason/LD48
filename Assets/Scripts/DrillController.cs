@@ -20,7 +20,7 @@ public class DrillController : MonoBehaviour
     public float visionRadius = 3.25f;
     private int length = 0;
     public int RemainingPipe = 70;
-    public int PipePerIron = 5;
+    public int PipePerIron = 3;
     public int ResearchCost = 3;
 
     public Sprite tile_right_drill;
