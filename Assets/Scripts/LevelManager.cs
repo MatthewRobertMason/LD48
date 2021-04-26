@@ -206,6 +206,7 @@ public class LevelManager : MonoBehaviour
                 if (Vector2.Distance(pos, test) <= radius)
                 {
                     FogOfWar.SetTile(new Vector3Int(xx, yy, 0), null);
+                    FogOfWarDecoration.SetTile(new Vector3Int(xx, yy, 0), null);
                 }
             }
         }
@@ -271,6 +272,7 @@ public class LevelManager : MonoBehaviour
                             x++;
                         }
 
+                        x = xVar;
                         y++;
                     }
                 }
