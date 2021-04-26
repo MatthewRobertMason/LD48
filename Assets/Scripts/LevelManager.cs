@@ -51,15 +51,10 @@ public class LevelManager : MonoBehaviour
     {
         if (FindObjectsOfType<LevelManager>().Length > 1)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         } else {
             DontDestroyOnLoad(this);
         }
-    }
-
-    public void Start()
-    {
-        gameManager = FindObjectOfType<GameManager>();
     }
 
     public void FindUI(){
@@ -68,6 +63,7 @@ public class LevelManager : MonoBehaviour
 
     public void Initialize()
     {
+        gameManager = FindObjectOfType<GameManager>();
         levelMap = new MapLevel(this);
 
         for (int i = 0; i < LevelMap.CurrentChunks; i++)

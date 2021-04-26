@@ -7,8 +7,6 @@ using Assets.Scripts.Enums;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-
     public GameObject characterPrefab;
     public GameObject drillPrefab;
     public GameObject cameraPrefab;
@@ -30,30 +28,42 @@ public class GameManager : MonoBehaviour
     public int GoldPoints = 3;
     public int DiamondPoints = 5;
 
-    public static void ResetGame(){
-        Destroy(instance.levelManager.gameObject);
-        instance.levelManager = null;
+    public void ResetGame(){
+        Destroy(levelManager.gameObject);
         SceneManager.LoadScene("SampleScene");
+        Start();
     }
 
-    public static void ContinueGame(){
-        instance.levelManager.RecyclePipes();
+    public void ContinueGame(){
+        levelManager.RecyclePipes();
         SceneManager.LoadScene("SampleScene");
+        Start();
     }
 
     private void Awake()
     {
         if (FindObjectsOfType<GameManager>().Length > 1)
         {
-            Destroy(this);
-            if(SceneManager.GetActiveScene().name == "SummaryScene"){
-                instance.EnterSummaryScene();
-            } else {
-                instance.EnterGameScene();
-            }
+            Destroy(this.gameObject);
         } else {
-            instance = this;
             DontDestroyOnLoad(this);
+        }
+    }
+
+    public void Start()
+    {
+        if (levelManager == null)
+        {
+            levelManager = FindObjectOfType<LevelManager>();
+        }
+        
+        if (SceneManager.GetActiveScene().name == "SummaryScene")
+        {
+            EnterSummaryScene();
+        }
+        else
+        {
+            EnterGameScene();
         }
     }
 
@@ -79,14 +89,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game scene starting");
         goldCount = copperCount = ironCount = diamondCount = maxDepth = 0;
 
-        cameraFollow = FindObjectOfType<CameraFollow>();
-        if(!levelManager){
-            levelManager = FindObjectOfType<LevelManager>();
-            levelManager.Initialize();
-        } else {
-            levelManager.FindUI();
-        }
-
+        levelManager.Initialize();
+        levelManager.FindUI();
+        
         CreateCharacterAndDrill();
     }
 
@@ -112,17 +117,6 @@ public class GameManager : MonoBehaviour
         drillComponent.ForcedMovement = 10;
     }
 
-    public void Start()
-    {
-        Debug.Log("GameManager Start");
-        levelManager = FindObjectOfType<LevelManager>();
-        cameraFollow = FindObjectOfType<CameraFollow>();
-        levelManager.Initialize();
-
-        CreateCharacterAndDrill();
-    }
-
-    
     public void AccumulateResourceScore(ResourceType type){
         switch(type){
             case ResourceType.Iron: ironCount++; break;
