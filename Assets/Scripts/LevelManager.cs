@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
     public Tilemap Foreground;
     public Tilemap Resource;
     public Tilemap FogOfWar;
+    public Tilemap FogOfWarDecoration;
 
     [Header("Tiles")]
     public Tile BedrockTile;
@@ -216,22 +217,63 @@ public class LevelManager : MonoBehaviour
 
     public void AddFogSprites(int layer)
     {
-        if (fogObjects3 != null && fogObjects3.Length > 0)
+        bool[,] test = new bool[levelWidth, chunkHeight];
+
+        if (fogObjects != null && fogObjects.Length > 0)
         {
-            int genNum = Random.Range(0, 4);
+            int genNum = Random.Range(4, 16);
 
             for (int i = 0; i < genNum; i++)
             {
-                int sprite = Random.Range(0, fogObjects3.Length);
-                int yVar = (Random.Range(4, chunkHeight-4));
-                int xTemp = levelWidth / genNum;
+                int sprite = Random.Range(0, fogObjects.Length);
 
-                int xVar = Random.Range(xTemp * i, xTemp * (i + 1));
+                FogObject fObject = fogObjects[sprite];
 
+                int sHeight = fObject.Height;
+                int sWidth = fObject.Width;
 
-                Vector3 pos = new Vector3(xVar,-1 * (yVar + chunkHeight * layer), 0.0f); ;
+                int yVar = (Random.Range(0, chunkHeight - sHeight));
+                int xVar = Random.Range(bedrockBorder, levelWidth - bedrockBorder - sWidth);
 
-                Instantiate(fogObjects3[sprite], pos, Quaternion.Euler(Vector3.zero), this.transform);
+                bool canPlace = true;
+                for (int x = xVar; x < xVar + sWidth; x++)
+                {
+                    for (int y = yVar; y < yVar + sHeight; y++)
+                    {
+                        if (test[x, y] == true)
+                        {
+                            canPlace = false;
+                            break;
+                        }
+                    }
+                    if (!canPlace)
+                    {
+                        break;
+                    }
+                }
+
+                if (canPlace)
+                {
+                    Vector3Int pos = new Vector3Int(0, 0, 0);
+
+                    int x = xVar;
+                    int y = yVar;
+
+                    foreach(FogTiles row in fObject.Rows)
+                    {
+                        foreach (Tile tile in row.Columns)
+                        {
+                            test[x, y] = true;
+
+                            pos.x = x;
+                            pos.y = -1 * (y + chunkHeight * layer);
+                            FogOfWarDecoration.SetTile(pos, tile);
+                            x++;
+                        }
+
+                        y++;
+                    }
+                }
             }
         }
     }
