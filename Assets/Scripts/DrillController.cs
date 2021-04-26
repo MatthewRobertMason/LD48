@@ -145,6 +145,7 @@ public class DrillController : MonoBehaviour
                     forcedMovement--;
                     if (forcedMovement == 0)
                     {
+                        cameraFollow.barrier.SetActive(true);
                         lockMovement = false;
                     }
                 }
