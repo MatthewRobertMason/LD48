@@ -283,7 +283,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4a351634786fd7144aedb6415745feee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -818,6 +818,7 @@ MonoBehaviour:
   initialHeight: 32
   chunkHeight: 32
   bedrockBorder: 8
+  fogStartDepth: 3
   Background: {fileID: 2122056341754809266}
   Foreground: {fileID: 2122056341537086254}
   Resource: {fileID: 2122056341912643897}
