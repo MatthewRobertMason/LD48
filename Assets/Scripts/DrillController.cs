@@ -67,6 +67,7 @@ public class DrillController : MonoBehaviour
     private GameManager gameManager;
     private LevelManager levelManager;
     private CameraFollow cameraFollow;
+    private SFXManager soundEffects;
 
     public float timePerAction = 1.0f;
     public float timePerActionForced = 0.25f;
@@ -82,6 +83,7 @@ public class DrillController : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         levelManager = FindObjectOfType<LevelManager>();
         cameraFollow = FindObjectOfType<CameraFollow>();
+        soundEffects = GetComponent<SFXManager>();
 
         sprite = GetComponent<SpriteRenderer>();
         levelManager.pipeDisplay.text = RemainingPipe.ToString();
@@ -121,6 +123,7 @@ public class DrillController : MonoBehaviour
     }
 
     public void GameOver(){
+        gameManager.soundEffectManager.PlayExplode();
         gameManager.GameOver();
     }
 
@@ -163,6 +166,7 @@ public class DrillController : MonoBehaviour
                 return;
             }
 
+            gameManager.soundEffectManager.PlayMove();
             gameManager.UpdateDepth(-position.y);
             levelManager.SetPipe(position.x, position.y, length);
             previousMove = facingDirection;

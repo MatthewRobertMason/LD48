@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     private LevelManager levelManager;
     private CameraFollow cameraFollow;
+    public SFXManager soundEffectManager;
 
     private int goldCount = 0;
     private int ironCount = 0;
@@ -65,6 +66,8 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
+        soundEffectManager = GetComponent<SFXManager>();
+
         if (levelManager == null)
         {
             levelManager = FindObjectOfType<LevelManager>();
