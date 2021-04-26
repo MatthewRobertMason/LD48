@@ -132,7 +132,7 @@ public class MapLevel
         if(LayerLevel >= 1){
 
             for(var ii = 0; ii < 5; ii++){
-                GenerateVein(Random.Range(5, 5 + Mathf.Min(20,LayerLevel)), ResourceType.Radioactive, temp, new Vector2Int(Random.Range(bedrockBorder, levelWidth - bedrockBorder), Random.Range(0, chunkHeight)), 2);
+                GenerateVein(Random.Range(5, 5 + LayerLevel), ResourceType.Radioactive, temp, new Vector2Int(Random.Range(bedrockBorder, levelWidth - bedrockBorder), Random.Range(0, chunkHeight)), 2);
             }
 
             // Number of veins decrease as you go down
