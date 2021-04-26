@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     {
         if (FindObjectsOfType<GameManager>().Length > 1)
         {
-            Destroy(this.gameObject);
+            DestroyImmediate(this.gameObject);
         } else {
             DontDestroyOnLoad(this);
         }

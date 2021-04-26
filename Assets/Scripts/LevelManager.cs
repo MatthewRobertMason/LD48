@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
     public Tile CopperTile;
     public Tile GoldTile;
     public Tile DiamondTile;
+    public Tile RadioactiveTile;
     
     public Tile GrassTile;
     public TileBase FogOfWarTile;
@@ -54,7 +55,7 @@ public class LevelManager : MonoBehaviour
     {
         if (FindObjectsOfType<LevelManager>().Length > 1)
         {
-            Destroy(this.gameObject);
+            DestroyImmediate(this.gameObject);
         } else {
             DontDestroyOnLoad(this);
         }
@@ -76,8 +77,8 @@ public class LevelManager : MonoBehaviour
     }
 
     public void EnsureDepth(int yy){
-        int chunk = yy / chunkHeight;
-        int generated = LevelMap.EnsureDepth(yy);
+        int chunk = 1 + yy / chunkHeight;
+        int generated = LevelMap.EnsureDepth(yy + chunkHeight);
         for(int ii = 0; ii < generated; ii++){
             DrawLayer(chunk + ii);
         }
@@ -152,6 +153,10 @@ public class LevelManager : MonoBehaviour
 
             case ResourceType.RustyPipe:
                 resource = RustyPipeTile;
+                break;
+
+            case ResourceType.Radioactive:
+                resource = RadioactiveTile;
                 break;
         }
 

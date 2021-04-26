@@ -14,6 +14,12 @@ public class AudioManager : MonoBehaviour
 
     private AudioSource audioSource;
     private Camera existingCamera;
+    private TextMarquee songName;
+    public TextMarquee SongName
+    {
+        get => songName;
+        set => songName = value;
+    }
 
     public AudioSource SourceAudio
     {
@@ -42,6 +48,7 @@ public class AudioManager : MonoBehaviour
     {
         track = (track + 1) % tracks.Length;
         SourceAudio.clip = tracks[track];
+        SetSongName(SourceAudio.clip);
         SourceAudio.Play();
     }
 
@@ -49,6 +56,7 @@ public class AudioManager : MonoBehaviour
     {
         track = (track + tracks.Length - 1) % tracks.Length;
         SourceAudio.clip = tracks[track];
+        SetSongName(SourceAudio.clip);
         SourceAudio.Play();
     }
 
@@ -61,13 +69,26 @@ public class AudioManager : MonoBehaviour
     public void PlaySummaryTrack()
     {
         SourceAudio.clip = SummarySceneTrack;
+        SetSongName(SourceAudio.clip);
         SourceAudio.Play();
     }
 
     public void ReturnToTrack()
     {
         SourceAudio.clip = tracks[track];
+        SetSongName(SourceAudio.clip);
         SourceAudio.Play();
+    }
+
+    public void SetSongName(AudioClip clip)
+    {
+        if (songName != null)
+        {
+            if (clip != null)
+            {
+                songName.SetUpText(clip.name);
+            }
+        }
     }
 
     // Update is called once per frame

@@ -16,6 +16,7 @@ namespace Assets.Scripts.Enums
         Diamond,
         Grass,
         Pipe,
-        RustyPipe
+        RustyPipe,
+        Radioactive,
     }
 }

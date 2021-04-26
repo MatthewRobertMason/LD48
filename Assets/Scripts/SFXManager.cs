@@ -8,12 +8,14 @@ public class SFXManager : MonoBehaviour
     public AudioSource ExplodeSource;
     public AudioSource StartSource;
 
+    public float volMultiplier = 0.2f;
+
     public float Volume{
         get => MoveSource.volume;
         set {
-            MoveSource.volume = value;
-            ExplodeSource.volume = value;
-            StartSource.volume = value;
+            MoveSource.volume = value * volMultiplier;
+            ExplodeSource.volume = value * volMultiplier;
+            StartSource.volume = value * volMultiplier;
         }
     }
 

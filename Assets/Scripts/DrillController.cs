@@ -20,7 +20,7 @@ public class DrillController : MonoBehaviour
     public float visionRadius = 3.25f;
     private int length = 0;
     public int RemainingPipe = 70;
-    public int PipePerIron = 5;
+    public int PipePerIron = 3;
     public int ResearchCost = 3;
 
     public Sprite tile_right_drill;
@@ -145,6 +145,7 @@ public class DrillController : MonoBehaviour
                     forcedMovement--;
                     if (forcedMovement == 0)
                     {
+                        cameraFollow.barrier.SetActive(true);
                         lockMovement = false;
                     }
                 }
@@ -159,7 +160,7 @@ public class DrillController : MonoBehaviour
 
     private bool AccumulateResource(ResourceType type){
         Debug.Log($"Resource get {type}");
-        if(type == ResourceType.Pipe){
+        if(type == ResourceType.Pipe || type == ResourceType.Radioactive){
             GameOver();
             return false;
         } else if(type == ResourceType.Iron){
