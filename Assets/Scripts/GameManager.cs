@@ -129,6 +129,7 @@ public class GameManager : MonoBehaviour
         levelManager.FindUI();
         
         CreateCharacterAndDrill();
+        soundEffectManager.PlayStart();
     }
 
     private void CreateCharacterAndDrill()

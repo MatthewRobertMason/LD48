@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 423007391309329277}
   - component: {fileID: -6233800727448897839}
   - component: {fileID: 7301018322952354157}
+  - component: {fileID: 8408484216050167988}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -56,6 +57,10 @@ MonoBehaviour:
   tile_left_drill: {fileID: -8175751224450135963, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   tile_up_drill: {fileID: 759806175588820344, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   tile_down_drill: {fileID: -7936603521824548063, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
+  ani_right_drill: {fileID: 0}
+  ani_left_drill: {fileID: 0}
+  ani_up_drill: {fileID: 0}
+  ani_down_drill: {fileID: 0}
   timePerAction: 0.5
   timePerActionForced: 0.15
 --- !u!114 &423007391309329277
@@ -147,6 +152,25 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 423007391309329278}
   m_Enabled: 1
+--- !u!95 &8408484216050167988
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 423007391309329278}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 91d234cb97556ae4e901e752bb1bcc68, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &87297990707700282
 PrefabInstance:
   m_ObjectHideFlags: 0
