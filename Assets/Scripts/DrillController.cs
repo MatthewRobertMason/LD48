@@ -121,7 +121,7 @@ public class DrillController : MonoBehaviour
     }
 
     public void GameOver(){
-        SceneManager.LoadScene("SummaryScene");
+        gameManager.GameOver();
     }
 
     private bool AccumulateResource(ResourceType type){

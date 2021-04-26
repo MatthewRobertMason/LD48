@@ -28,26 +28,28 @@ public class GameManager : MonoBehaviour
     public int GoldPoints = 3;
     public int DiamondPoints = 5;
 
-    bool restartGame = false;
+    bool rerunStartFunction = false;
 
     public void ResetGame(){
         Destroy(levelManager.gameObject);
         SceneManager.LoadScene("SampleScene");
-        restartGame = true;
+        rerunStartFunction = true;
     }
 
     public void ContinueGame(){
+        
         levelManager.RecyclePipes();
         SceneManager.LoadScene("SampleScene");
-        restartGame = true;
+        levelManager.gameObject.SetActive(true);
+        rerunStartFunction = true;
     }
 
     public void FixedUpdate()
     {
-        if (restartGame)
+        if (rerunStartFunction)
         {
             Start();
-            restartGame = false;
+            rerunStartFunction = false;
         }
     }
 
@@ -76,6 +78,12 @@ public class GameManager : MonoBehaviour
         {
             EnterGameScene();
         }
+    }
+
+    public void GameOver()
+    {
+        levelManager.gameObject.SetActive(false);
+        SceneManager.LoadScene("SummaryScene");
     }
 
     private void EnterSummaryScene(){
@@ -122,7 +130,7 @@ public class GameManager : MonoBehaviour
         cameraFollow.Player = player;
 
         Vector3 machinePos = new Vector3(pos.x + 1, drillPrefab.transform.position.y, 0);
-        GameObject drillMachineObject = Instantiate<GameObject>(drillPrefab, machinePos, Quaternion.Euler(Vector3.zero));
+        GameObject drillMachineObject = Instantiate<GameObject>(drillPrefab, machinePos, Quaternion.Euler(Vector3.zero), levelManager.transform);
 
         drillComponent.LockMovement = true;
         drillComponent.ForcedMovement = 10;
