@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     bool rerunStartFunction = false;
 
     public void ResetGame(){
-        DestroyImmediate(levelManager.gameObject);
+        Destroy(levelManager.gameObject);
         SceneManager.LoadScene("SampleScene");
         rerunStartFunction = true;
     }
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     {
         if (FindObjectsOfType<GameManager>().Length > 1)
         {
-            Destroy(this.gameObject);
+            DestroyImmediate(this.gameObject);
         } else {
             DontDestroyOnLoad(this);
         }
