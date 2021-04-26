@@ -246,6 +246,198 @@ PrefabInstance:
       propertyPath: pipeDisplay
       value: 
       objectReference: {fileID: 1961024575}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[0].name
+      value: bone-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].name
+      value: bone-2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].name
+      value: ufo
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[0].Rows.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[0].Rows.Array.data[0].Columns.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[0].Rows.Array.data[1].Columns.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[0].Columns.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[1].Columns.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[2].Columns.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[3].Columns.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[0].Columns.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[1].Columns.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[2].Columns.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[3].Columns.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[0].Rows.Array.data[0].Columns.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: e79f2dbc8ad81364994637567a6b7e45, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[0].Rows.Array.data[0].Columns.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 57106e0e0c44bb44685a607d7b5d9b5d, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[0].Rows.Array.data[1].Columns.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 07ec309d69c85fe498c732d68b5c7ebd, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[0].Rows.Array.data[1].Columns.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a84210549e21f340b585e837a0ee9dc, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[0].Columns.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[0].Columns.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[0].Columns.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: e6e09a1bc83fe5b4ea4b019ad8035472, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[0].Columns.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4c69ff29effadae45a07c7fbe3282d5e, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[1].Columns.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: be84d0c9541054d42ad959007462d36e, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[1].Columns.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e1970def200f7b943b6ba9c1f3974012, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[1].Columns.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a8765b4263bf80458eeebba64f6ecf3, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[2].Columns.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6afa99b2305002d4b9d986b1fc169a53, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[2].Columns.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: ec16bdbcc1643a94f927a91b7398b667, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[3].Columns.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2d8b5f1a7c31eb64395ef5aad7c58cb6, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[3].Columns.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: da722088e19c09f48bd7100284849309, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[1].Rows.Array.data[3].Columns.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d5d0fbafaa0a8f4f9a6ddde7cced871, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[0].Columns.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 31cd552558105f04eb06f7fd80c0592e, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[0].Columns.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b0d34298993caf14b921b618251c8fb2, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[0].Columns.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 46d470d3f6086c04cae9b52157e1e7d7, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[0].Columns.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5cfad9060cfd4ee42ae62355a9393fc4, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[1].Columns.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: ca76e859864d2174bb92383f6b3e992c, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[1].Columns.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 50941f56d3f596143ba6d6562dcb38af, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[1].Columns.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: fd6dd4540cccce54c93deef1f819f395, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[1].Columns.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 519c40d405ba45747851c9baf44b5441, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[2].Columns.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1f1f151384a4c854780348b3318693d6, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[2].Columns.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b5d31e759d423c49837b2449b1b1ae8, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[2].Columns.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 80fe584a2abd897488415d9efcc42159, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[2].Columns.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 11260ff672c9b83409702d9fc858bc65, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[3].Columns.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2b1ff9f7909af834490db2e0235604c5, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[3].Columns.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: a21b961a7c8b1e6448cabb6affc936df, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[3].Columns.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1356e68053baeb546b963cd433ac0762, type: 2}
+    - target: {fileID: 2122056342040366470, guid: f9e82eaca43512748a73518c659f814a, type: 3}
+      propertyPath: fogObjects.Array.data[2].Rows.Array.data[3].Columns.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 15191e3cd9474164ea25b1e3aa0af0e6, type: 2}
     - target: {fileID: 2122056342040366471, guid: f9e82eaca43512748a73518c659f814a, type: 3}
       propertyPath: m_Name
       value: LevelManager
