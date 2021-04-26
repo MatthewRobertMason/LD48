@@ -198,7 +198,7 @@ public class MapLevel
                 for(int yy = 0; yy < chunkHeight; yy++){
                     if(chunk[xx, yy].resourceType == a){
                         chunk[xx, yy].resourceType = b;
-                        changed.Add(new Vector2Int(xx, yy));
+                        changed.Add(new Vector2Int(xx, yy + (index * chunkHeight)));
                     }
                 }
             }
