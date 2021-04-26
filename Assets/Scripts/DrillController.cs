@@ -35,6 +35,8 @@ public class DrillController : MonoBehaviour
     private UnityEngine.UI.Text ResearchCostText;
     private UnityEngine.UI.Text ResearchResourceText;
 
+    private PressureGauge gauge;
+
     private bool lockMovement = false;
     public bool LockMovement
     {
@@ -84,6 +86,8 @@ public class DrillController : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
         cameraFollow = FindObjectOfType<CameraFollow>();
         soundEffects = GetComponent<SFXManager>();
+        gauge = GetComponentInChildren<PressureGauge>();
+        gauge.SetMaxTime(timePerAction);
 
         sprite = GetComponent<SpriteRenderer>();
         levelManager.pipeDisplay.text = RemainingPipe.ToString();
@@ -105,7 +109,8 @@ public class DrillController : MonoBehaviour
         }
         
         timePassed += Time.fixedDeltaTime;
-        
+        gauge.SetTime(maxTime - timePassed);
+
         if (timePassed > maxTime)
         {
             timePassed -= maxTime;
@@ -170,6 +175,7 @@ public class DrillController : MonoBehaviour
             gameManager.UpdateDepth(-position.y);
             levelManager.SetPipe(position.x, position.y, length);
             previousMove = facingDirection;
+            gauge.transform.position = transform.position - new Vector3(facingDirection.x, facingDirection.y, 0);
             length++;
             if (previousMove.x == 1)
             {
@@ -342,6 +348,7 @@ public class DrillController : MonoBehaviour
                 break;
             case ResearchType.Speed:
                 timePerAction++;
+                gauge.SetMaxTime(timePerAction);
                 break;
             case ResearchType.View:
                 visionRadius++;
