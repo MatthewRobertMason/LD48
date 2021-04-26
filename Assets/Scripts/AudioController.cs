@@ -22,7 +22,8 @@ public class AudioController : MonoBehaviour
     {
         audioManager = FindObjectOfType<AudioManager>();
         sfxManager = FindObjectOfType<SFXManager>();
-        volumeSlider.value = volume = sfxManager.Volume;
+        volumeSlider.value = volume = audioManager.SourceAudio.volume;
+        if(sfxManager) sfxManager.Volume = volume;
     }
 
     void Update()
@@ -30,6 +31,8 @@ public class AudioController : MonoBehaviour
         if (audioManager != null)
         {
             audioManager.SourceAudio.volume = volume;
+        }
+        if(sfxManager != null){
             sfxManager.Volume = volume;
         }
     }

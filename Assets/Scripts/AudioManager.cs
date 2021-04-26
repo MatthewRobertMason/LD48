@@ -24,17 +24,17 @@ public class AudioManager : MonoBehaviour
     {
         if (FindObjectsOfType<AudioManager>().Length > 1)
         {
-            Destroy(this.gameObject);
+            DestroyImmediate(this.gameObject);
         }
         else
         {
             DontDestroyOnLoad(this);
+            audioSource = GetComponent<AudioSource>();
         }
     }
 
     public void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         existingCamera = FindObjectOfType<Camera>();
     }
 
