@@ -376,7 +376,7 @@ public class DrillController : MonoBehaviour
                 PipePerIron += 2;
                 break;
             case ResearchType.Speed:
-                timePerAction++;
+                timePerAction += 0.2f;
                 gauge.SetMaxTime(timePerAction);
                 break;
             case ResearchType.View:
