@@ -130,21 +130,26 @@ public class MapLevel
         }
 
         if(LayerLevel >= 1){
+
+            for(var ii = 0; ii < 5; ii++){
+                GenerateVein(Random.Range(5, 5 + LayerLevel), ResourceType.Radioactive, temp, new Vector2Int(Random.Range(bedrockBorder, levelWidth - bedrockBorder), Random.Range(0, chunkHeight)), 2);
+            }
+
             // Number of veins decrease as you go down
-            int veins = Mathf.Max(2, (int)Mathf.Ceil(5.0f - LayerLevel/4.0f));
+            int veins = Mathf.Max(1, (int)Mathf.Ceil(4.0f - LayerLevel/5.0f));
 
             for(var ii = 0; ii < veins; ii++){
                 // But get bigger as you go down
-                int size = Random.Range(3 + LayerLevel, 10 + LayerLevel*3);
+                int size = Random.Range(3 + LayerLevel, 10 + LayerLevel*2);
                 GenerateVein(size, ResourceType.Iron, temp, new Vector2Int(Random.Range(bedrockBorder, levelWidth - bedrockBorder), Random.Range(0, chunkHeight)));
 
-                size = Random.Range(3 + LayerLevel, 15 + LayerLevel*2);
+                size = Random.Range(3 + LayerLevel/2, 15 + LayerLevel);
                 GenerateVein(size, ResourceType.Copper, temp, new Vector2Int(Random.Range(bedrockBorder, levelWidth - bedrockBorder), Random.Range(0, chunkHeight)));
 
-                size = Random.Range(3 + LayerLevel, 8 + LayerLevel);
+                size = Random.Range(3 + LayerLevel/4, 8 + LayerLevel/2);
                 GenerateVein(size, ResourceType.Gold, temp, new Vector2Int(Random.Range(bedrockBorder, levelWidth - bedrockBorder), Random.Range(0, chunkHeight)));
 
-                size = Random.Range(3 + LayerLevel/2, 5 + LayerLevel/2);
+                size = Random.Range(3 + LayerLevel/8, 5 + LayerLevel/4);
                 GenerateVein(size, ResourceType.Diamond, temp, new Vector2Int(Random.Range(bedrockBorder, levelWidth - bedrockBorder), Random.Range(0, chunkHeight)));
             }
         }
@@ -154,7 +159,7 @@ public class MapLevel
         return temp;
     }
 
-    private void GenerateVein(int size, ResourceType kind, GameTile[,] chunk, Vector2Int start){
+    private void GenerateVein(int size, ResourceType kind, GameTile[,] chunk, Vector2Int start, int gap=1){
         var covered = new HashSet<Vector2Int>();
         var neighbors = new HashSet<Vector2Int>();
         var neighbor_list = new List<Vector2Int>();
@@ -179,8 +184,8 @@ public class MapLevel
             created++;
 
             // Add neighbours for added tile
-            for(int dx = -1; dx <= 1; dx++){
-                for(int dy = -1; dy <= 1; dy++){
+            for(int dx = -gap; dx <= gap; dx++){
+                for(int dy = -gap; dy <= gap; dy++){
                     var point = new Vector2Int(dx, dy);
                     point += current;
                     if(!neighbors.Contains(point) && !covered.Contains(point)){

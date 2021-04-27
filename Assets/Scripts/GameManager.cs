@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private GameObject cameraObject;
 
     private LevelManager levelManager;
+    private AudioManager audioManager;
     private CameraFollow cameraFollow;
     public SFXManager soundEffectManager;
 
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour
     {
         if (FindObjectsOfType<GameManager>().Length > 1)
         {
-            Destroy(this.gameObject);
+            DestroyImmediate(this.gameObject);
         } else {
             DontDestroyOnLoad(this);
         }
@@ -71,6 +72,11 @@ public class GameManager : MonoBehaviour
         if (levelManager == null)
         {
             levelManager = FindObjectOfType<LevelManager>();
+        }
+
+        if (audioManager == null)
+        {
+            audioManager = FindObjectOfType<AudioManager>();
         }
         
         if (SceneManager.GetActiveScene().name == "SummaryScene")
@@ -92,6 +98,7 @@ public class GameManager : MonoBehaviour
 
     private void EnterSummaryScene(){
         Debug.Log("Summary scene starting");
+        audioManager.PlaySummaryTrack();
         float depthModifier = (float)maxDepth/DepthMultiplier;
         float score = (CopperPoints * copperCount + IronPoints * ironCount + GoldPoints * goldCount + DiamondPoints * diamondCount) * depthModifier;
 
@@ -110,6 +117,8 @@ public class GameManager : MonoBehaviour
 
     private void EnterGameScene(){
         Debug.Log("Game scene starting");
+        audioManager.SourceAudio.Pause();
+
         goldCount = copperCount = ironCount = diamondCount = maxDepth = 0;
 
         if (levelManager.LevelMap == null)
@@ -120,6 +129,7 @@ public class GameManager : MonoBehaviour
         levelManager.FindUI();
         
         CreateCharacterAndDrill();
+        soundEffectManager.PlayStart();
     }
 
     private void CreateCharacterAndDrill()
@@ -142,6 +152,7 @@ public class GameManager : MonoBehaviour
 
         drillComponent.LockMovement = true;
         drillComponent.ForcedMovement = 10;
+        drillComponent.PauseTime = soundEffectManager.StartSource.clip.length * 0.9f;
     }
 
     public void AccumulateResourceScore(ResourceType type){
