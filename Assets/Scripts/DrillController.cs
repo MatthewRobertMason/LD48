@@ -227,8 +227,31 @@ public class DrillController : MonoBehaviour
             }
         }
 
-        this.transform.position = new Vector3(position.x, position.y, 0.0f);
+        Vector3 pos = new Vector3(
+            (position.x + gauge.transform.position.x) / 2.0f, 
+            (position.y + gauge.transform.position.y) / 2.0f,
+            0.0f);
+
+        this.transform.position = pos;
         levelManager.ClearFogOfWar(position.x, position.y, visionRadius);
+
+        //GameObject mask = Instantiate(levelManager.FogMaskCircle, pos, levelManager.FogMaskCircle.transform.rotation);
+        //mask.transform.localScale = new Vector3(
+        //    mask.transform.localScale.x * visionRadius, 
+        //    mask.transform.localScale.y * visionRadius, 
+        //    mask.transform.localScale.z);
+
+        //Vector3 squareMaskPos = new Vector3(pos.x, pos.y, pos.z);
+        //GameObject squareMask = Instantiate(levelManager.FogMaskSquare, squareMaskPos, levelManager.FogMaskCircle.transform.rotation);
+        //squareMask.transform.localScale = new Vector3(
+        //    squareMask.transform.localScale.x * visionRadius,
+        //    squareMask.transform.localScale.y,
+        //    squareMask.transform.localScale.z);
+        //
+        //if (previousMove.x == 1 || previousMove.x == -1)
+        //{
+        //    squareMask.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 1.0f);
+        //}
 
         levelManager.DigTile(position.x, position.y);
     }

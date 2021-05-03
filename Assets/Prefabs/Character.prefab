@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
-  visionRadius: 3.25
+  visionRadius: 3.5
   RemainingPipe: 70
   PipePerIron: 5
   ResearchCost: 3
@@ -57,12 +57,9 @@ MonoBehaviour:
   tile_left_drill: {fileID: -8175751224450135963, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   tile_up_drill: {fileID: 759806175588820344, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
   tile_down_drill: {fileID: -7936603521824548063, guid: 913b5177b9e788e4b9185671a0960654, type: 3}
-  ani_right_drill: {fileID: 0}
-  ani_left_drill: {fileID: 0}
-  ani_up_drill: {fileID: 0}
-  ani_down_drill: {fileID: 0}
   timePerAction: 0.5
   timePerActionForced: 0.15
+  pause: 0
 --- !u!114 &423007391309329277
 MonoBehaviour:
   m_ObjectHideFlags: 0

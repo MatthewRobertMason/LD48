@@ -155,6 +155,7 @@ public class MapLevel
         }
 
         levelManager.AddFogSprites(LayerLevel);
+        levelManager.CreateFogObject(LayerLevel);
 
         return temp;
     }

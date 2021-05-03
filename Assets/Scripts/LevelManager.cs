@@ -45,6 +45,26 @@ public class LevelManager : MonoBehaviour
     public TileBase PipeTile;
     public TileBase RustyPipeTile;
 
+    public FogObject[] fogObjects;
+
+    private Texture2D blackTexture;
+    private int textureWidth;
+
+    private List<FogSprite> fogSpriteList;
+    public Material FogOfWarMaterial;
+    public GameObject FogMaskCircle;
+    public GameObject FogMaskSquare;
+
+    public int TextureWidth
+    {
+        get => textureWidth;
+    }
+    private int textureHeight;
+    public int TextureHeight
+    {
+        get => textureHeight;
+    }
+
     public MapLevel LevelMap
     {
         get => levelMap;
@@ -68,6 +88,13 @@ public class LevelManager : MonoBehaviour
     public void Initialize()
     {
         gameManager = FindObjectOfType<GameManager>();
+
+        this.textureWidth = (levelWidth + (bedrockBorder * 2)) * 32;
+        this.textureHeight = chunkHeight * 32;
+
+        fogSpriteList = new List<FogSprite>();
+        CreateBlackTexture();
+
         levelMap = new MapLevel(this);
 
         for (int i = 0; i < LevelMap.CurrentChunks; i++)
@@ -218,9 +245,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public GameObject[] fogObjects3;
-
-    public FogObject[] fogObjects;
+    
 
     public void AddFogSprites(int layer)
     {
@@ -295,5 +320,32 @@ public class LevelManager : MonoBehaviour
         foreach(var index in changes){
             DrawTile(index.x, index.y, false);
         }
+    }
+
+    private void CreateBlackTexture()
+    {
+        blackTexture = new Texture2D(this.textureWidth, this.textureHeight);
+        Color[] blackPixels = blackTexture.GetPixels();
+        Color blackColour = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+
+        for (int i = 0; i < blackPixels.Length; i++)
+        {
+            blackPixels[i] = blackColour;
+        }
+
+        blackTexture.SetPixels(blackPixels);
+        blackTexture.Apply();
+    }
+
+    public void CreateFogObject(int layer)
+    {
+        GameObject fogObject = new GameObject("FogSpriteObj_" + layer, typeof(FogSprite), typeof(SpriteRenderer));
+
+        FogSprite fogSprite = fogObject.GetComponent<FogSprite>();
+
+        fogSprite.Initialize(this, this.textureWidth, this.textureHeight, FogOfWarMaterial);
+        fogSprite.CreateFogSprite(layer, blackTexture);
+
+        fogSpriteList.Add(fogSprite);
     }
 }
