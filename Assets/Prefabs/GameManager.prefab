@@ -198,6 +198,7 @@ MonoBehaviour:
   MoveSource: {fileID: 1995919251798069731}
   ExplodeSource: {fileID: 370704961461384253}
   StartSource: {fileID: 634159839630391783}
+  volMultiplier: 0.2
 --- !u!1 &3599901637334570739
 GameObject:
   m_ObjectHideFlags: 0

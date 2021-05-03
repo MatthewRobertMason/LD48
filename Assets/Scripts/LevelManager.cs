@@ -55,6 +55,9 @@ public class LevelManager : MonoBehaviour
     public GameObject FogMaskCircle;
     public GameObject FogMaskSquare;
 
+    public Transform FogSpriteTransform;
+    public Transform FogMaskTransform;
+
     public int TextureWidth
     {
         get => textureWidth;
@@ -193,11 +196,6 @@ public class LevelManager : MonoBehaviour
         {
             Resource.SetTile(pos, resource);
         }
-
-        if (y > fogStartDepth && fog)
-        {
-            FogOfWar.SetTile(pos, foreGround);
-        }
     }
 
     public void DigTile(int x, int y)
@@ -238,7 +236,6 @@ public class LevelManager : MonoBehaviour
                 test.y = yy;
                 if (Vector2.Distance(pos, test) <= radius)
                 {
-                    FogOfWar.SetTile(new Vector3Int(xx, yy, 0), null);
                     FogOfWarDecoration.SetTile(new Vector3Int(xx, yy, 0), null);
                 }
             }
@@ -340,6 +337,7 @@ public class LevelManager : MonoBehaviour
     public void CreateFogObject(int layer)
     {
         GameObject fogObject = new GameObject("FogSpriteObj_" + layer, typeof(FogSprite), typeof(SpriteRenderer));
+        fogObject.transform.parent = FogSpriteTransform;
 
         FogSprite fogSprite = fogObject.GetComponent<FogSprite>();
 

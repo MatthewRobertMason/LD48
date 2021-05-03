@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2122056340238922365}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &1560659133
 Tilemap:
@@ -200,6 +200,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1152743264869098486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4826184958232212038}
+  m_Layer: 0
+  m_Name: FogOfWarSprites
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4826184958232212038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152743264869098486}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2122056342040366469}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2122056340238922367
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +261,6 @@ Transform:
   - {fileID: 8850825367370863923}
   - {fileID: 2122056341537086240}
   - {fileID: 2122056341912643899}
-  - {fileID: 2122056340750227001}
   - {fileID: 1560659135}
   m_Father: {fileID: 2122056342040366469}
   m_RootOrder: 0
@@ -248,152 +277,6 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!1 &2122056340750227002
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2122056340750227001}
-  - component: {fileID: 2122056340750226951}
-  - component: {fileID: 2122056340750227000}
-  m_Layer: 0
-  m_Name: FogOfWar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2122056340750227001
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2122056340750227002}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2122056340238922365}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1839735485 &2122056340750226951
-Tilemap:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2122056340750227002}
-  m_Enabled: 1
-  m_Tiles: {}
-  m_AnimatedTiles: {}
-  m_TileAssetArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  m_TileSpriteArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  m_TileMatrixArray:
-  - m_RefCount: 0
-    m_Data:
-      e00: 2.5244127e-29
-      e01: -1.2955335e-15
-      e02: -1.2954403e-15
-      e03: -1.2954403e-15
-      e10: 7.34e-43
-      e11: 1.37e-43
-      e12: 1.37e-43
-      e13: 1.37e-43
-      e20: -1.3352175e+30
-      e21: 3.699876e+19
-      e22: -8.7981045e-10
-      e23: 3.699876e+19
-      e30: 4.5905e-41
-      e31: 7.36e-43
-      e32: 7.33e-43
-      e33: 7.36e-43
-  m_TileColorArray:
-  - m_RefCount: 0
-    m_Data: {r: 3.699721e+19, g: 3.699721e+19, b: 3.699721e+19, a: 3.699721e+19}
-  m_TileObjectToInstantiateArray: []
-  m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: -15, y: -6, z: 0}
-  m_Size: {x: 28, y: 13, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
-  m_TileOrientation: 0
-  m_TileOrientationMatrix:
-    e00: 1
-    e01: 0
-    e02: 0
-    e03: 0
-    e10: 0
-    e11: 1
-    e12: 0
-    e13: 0
-    e20: 0
-    e21: 0
-    e22: 1
-    e23: 0
-    e30: 0
-    e31: 0
-    e32: 0
-    e33: 1
---- !u!483693784 &2122056340750227000
-TilemapRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2122056340750227002}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 4a351634786fd7144aedb6415745feee, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 10
-  m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
-  m_MaxChunkCount: 16
-  m_MaxFrameAge: 16
-  m_SortOrder: 0
-  m_Mode: 0
-  m_DetectChunkCullingBounds: 0
-  m_MaskInteraction: 0
 --- !u!1 &2122056341537086241
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,6 +764,8 @@ Transform:
   m_Children:
   - {fileID: 2122056340238922365}
   - {fileID: 2036703833}
+  - {fileID: 4826184958232212038}
+  - {fileID: 1186013394033768341}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -905,7 +790,7 @@ MonoBehaviour:
   Background: {fileID: 2122056341754809266}
   Foreground: {fileID: 2122056341537086254}
   Resource: {fileID: 2122056341912643897}
-  FogOfWar: {fileID: 2122056340750226951}
+  FogOfWar: {fileID: 0}
   FogOfWarDecoration: {fileID: 1560659133}
   BedrockTile: {fileID: 11400000, guid: e4e699b83b03e3f4ebd8ecb294092f91, type: 2}
   DirtTile: {fileID: 11400000, guid: bb632df14a70ea242a730e86c2e4b09c, type: 2}
@@ -919,7 +804,6 @@ MonoBehaviour:
   FogOfWarTile: {fileID: 11400000, guid: 0c939e69e3b9eb14eb90337119bae3dc, type: 2}
   PipeTile: {fileID: 11400000, guid: 27ea3f3ec1fc97348a039cc45148b553, type: 2}
   RustyPipeTile: {fileID: 11400000, guid: d47573b5730b11844bccd638a4661d10, type: 2}
-  fogObjects3: []
   fogObjects:
   - name: bone-1
     Rows:
@@ -1143,3 +1027,38 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 8bd69dfdfdcff7541af8121a8c7b2c56, type: 2}
       - {fileID: 11400000, guid: 3693d254ea9ee3a428ff3a6a476eee26, type: 2}
       - {fileID: 11400000, guid: a58ecba81d3ce314195bc0cc1508f4e2, type: 2}
+  FogOfWarMaterial: {fileID: 2100000, guid: b18cf9eb3d030a449a7d0e7066176c6e, type: 2}
+  FogMaskCircle: {fileID: 1896317179517905179, guid: d6cc19b87921b85499b9b7862af71739, type: 3}
+  FogMaskSquare: {fileID: 5279173982153296269, guid: ea6c7fc38d6edc341b27ffecaad81aa3, type: 3}
+  FogSpriteTransform: {fileID: 4826184958232212038}
+  FogMaskTransform: {fileID: 1186013394033768341}
+--- !u!1 &8924810621890683614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1186013394033768341}
+  m_Layer: 0
+  m_Name: FogOfWarMasks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1186013394033768341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8924810621890683614}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2122056342040366469}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
