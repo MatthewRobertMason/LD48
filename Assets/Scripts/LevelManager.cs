@@ -25,8 +25,9 @@ public class LevelManager : MonoBehaviour
     public Tilemap Background;
     public Tilemap Foreground;
     public Tilemap Resource;
-    public Tilemap FogOfWar;
+    public Tilemap FogOfWarTileCover;
     public Tilemap FogOfWarDecoration;
+    public Tilemap FogOfWarFog;
 
     [Header("Tiles")]
     public Tile BedrockTile;
@@ -169,7 +170,8 @@ public class LevelManager : MonoBehaviour
 
         if (y > fogStartDepth && fog)
         {
-            FogOfWar.SetTile(pos, foreGround);
+            FogOfWarTileCover.SetTile(pos, foreGround);
+            FogOfWarFog.SetTile(pos, FogOfWarTile);
         }
     }
 
@@ -211,14 +213,17 @@ public class LevelManager : MonoBehaviour
                 test.y = yy;
                 if (Vector2.Distance(pos, test) <= radius)
                 {
-                    FogOfWar.SetTile(new Vector3Int(xx, yy, 0), null);
+                    FogOfWarTileCover.SetTile(new Vector3Int(xx, yy, 0), null);
                     FogOfWarDecoration.SetTile(new Vector3Int(xx, yy, 0), null);
+                }
+
+                if (Vector2.Distance(pos, test) <= radius - 1)
+                { 
+                    FogOfWarFog.SetTile(new Vector3Int(xx, yy, 0), null); 
                 }
             }
         }
     }
-
-    public GameObject[] fogObjects3;
 
     public FogObject[] fogObjects;
 

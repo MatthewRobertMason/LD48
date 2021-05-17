@@ -136,19 +136,19 @@ public class GameManager : MonoBehaviour
     {
         Vector3Int pos = new Vector3Int(levelManager.levelWidth/2, 0, 0);
         if(player == null)
-            player = Instantiate<GameObject>(characterPrefab, pos, Quaternion.Euler(Vector3.zero));
+            player = Instantiate<GameObject>(characterPrefab, pos, characterPrefab.transform.rotation);
         DrillController drillComponent = player.GetComponent<DrillController>();
         drillComponent.position = new Vector2Int(pos.x, pos.y);
 
         levelManager.DigTile(pos.x, pos.y);
         levelManager.RemoveGrass(pos.x, pos.y);
 
-        cameraObject = Instantiate<GameObject>(cameraPrefab, new Vector3(0.0f, 0.0f, -10.0f), Quaternion.Euler(Vector3.zero));
+        cameraObject = Instantiate<GameObject>(cameraPrefab, new Vector3(0.0f, 0.0f, -10.0f), cameraPrefab.transform.rotation);
         cameraFollow = cameraObject.GetComponent<CameraFollow>();
         cameraFollow.Player = player;
 
         Vector3 machinePos = new Vector3(pos.x + 1, drillPrefab.transform.position.y, 0);
-        GameObject drillMachineObject = Instantiate<GameObject>(drillPrefab, machinePos, Quaternion.Euler(Vector3.zero), levelManager.transform);
+        GameObject drillMachineObject = Instantiate<GameObject>(drillPrefab, machinePos, drillPrefab.transform.rotation, levelManager.transform);
 
         drillComponent.LockMovement = true;
         drillComponent.ForcedMovement = 10;

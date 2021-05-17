@@ -111,6 +111,8 @@ public class DrillController : MonoBehaviour
         ResearchCostText = GameObject.Find("ResearchCost").GetComponent<UnityEngine.UI.Text>();
         ResearchResourceText = GameObject.Find("ResearchResource").GetComponent<UnityEngine.UI.Text>();
         StartResearch();
+
+        this.animator.SetInteger("Direction", 2);
     }
 
     public void FixedUpdate()
